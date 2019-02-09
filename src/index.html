@@ -15,7 +15,7 @@
     <h1>Trivia Adventure Time!</h1>
   </header>
 
-  <body>
+  <main>
     <section class="setup-game">
       <div class="wrapper">
         <form action="" class="setup-game-form">
@@ -27,21 +27,28 @@
           <label class="visuallyhidden" for="setup-game-difficulty">
             select difficulty
           </label>
-          <select name="" id="setup-game-difficulty">
+          <select name="difficulty" id="setup-game-difficulty">
             <option value="easy">easy</option>
             <option value="medium">medium</option>
             <option value="hard">hard</option>
           </select>  
 
+          <label for="setup-game-categories" class="visuallyhidden">
+            choose category
+          </label>
+          <select name="categories" id="setup-game-categories">
+            <option value="9">General Knowledge</option>
+            <option value="15">Video Games</option>
+            <option value="11">Film</option>
+            <option value="21">Sports</option>
+            <option value="18">Computers</option>
+            <option value="14">Television</option>
+          </select>
+
+          <button>Start Game!</button>
         </form>
       </div>
     </section>
-    
-  </body>
-
-
-  
-
+  </main>
 </body>
-
 </html>

@@ -1,17 +1,16 @@
 import axios from 'axios';
-import uuid from 'uuid';
 import Player from './player';
 export default class Game{
   constructor(){
     this.questions = [];
     this.playerList = [];
-    this.player = {};
     this.score = 0;
     this.win = false;
   };
 
-  async startNewGame(){
-    const response = await axios.get('https://opentdb.com/api.php?amount=10&category=15&difficulty=easy');
+  async startNewGame(category, difficulty){
+    const response = await axios.get(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}`);
+
     const data = response.data.results;
     data.forEach((question =>{
       this.questions.push({
@@ -26,7 +25,6 @@ export default class Game{
   addPlayer(name, totalScore = 0, ){
     const newPlayer = new Player(name, totalScore);
     this.playerList.push(newPlayer);
-    this.player = newPlayer;
     return newPlayer;
   }
 

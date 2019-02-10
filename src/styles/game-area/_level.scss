@@ -1,0 +1,30 @@
+.level {
+  
+
+  &-wrapper {
+    display: flex;
+    justify-content: space-between
+  }
+
+  &-player-lives{
+     &::before{
+       content: '';
+       display:block;
+       width:100%;
+       height:10px;
+       border-radius:20px;
+       background-color:green;
+     }
+  }
+
+  &-opponent-lives{
+    &::before{
+      content: '';
+      display:block;
+      width:100%;
+      height:10px;
+      border-radius:20px;
+      background-color:green;
+    }
+  }
+}

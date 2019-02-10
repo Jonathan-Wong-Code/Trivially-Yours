@@ -16,38 +16,111 @@
   </header>
 
   <main>
-    <section class="setup-game">
-      <div class="wrapper">
-        <form action="" class="setup-game-form">
-          <label class="visuallyhidden" for="setup-game-name">
-            enter name
-          </label>
-          <input type="text" class="setup-game-name" name="name" id="setup-game-name">
+    
+    <section class="game">
+      <div class="wrapper game-area">
 
-          <label class="visuallyhidden" for="setup-game-difficulty">
-            select difficulty
-          </label>
-          <select name="difficulty" id="setup-game-difficulty">
-            <option value="easy">easy</option>
-            <option value="medium">medium</option>
-            <option value="hard">hard</option>
-          </select>  
+        <section class="login">
+          <div class="login-buttons">
+            <button class="login-new" data-login='new'>New Game</button>
+            <button class="login-continue" data-login='continue'>Continue</button>
+          </div>
+        </section>
 
-          <label for="setup-game-categories" class="visuallyhidden">
-            choose category
-          </label>
-          <select name="categories" id="setup-game-categories">
-            <option value="9">General Knowledge</option>
-            <option value="15">Video Games</option>
-            <option value="11">Film</option>
-            <option value="21">Sports</option>
-            <option value="18">Computers</option>
-            <option value="14">Television</option>
-          </select>
+        <section class="setup-choose-player">
+          <ul class="setup-continue-players">
+            <li class="setup-continue-player">
+              <p class="setup-continue-player-name">Player name</p>
+              <p class="setup-continue-player-score">Player score</p>
+            </li>
+          </ul>
+        </section>
+        
+        <section class="setup-continue">
+            <form action="" class="setup-form-continue">
+               
+                <h2 class="setup-continue-heading">Welcome Player!</h2>
+                <label class="visuallyhidden" for="setup-new-difficulty">
+                  Difficulty
+                </label>
+                <select name="difficulty" id="setup-new-difficulty" class="setup-new-difficulty">
+                  <option value="easy">easy</option>
+                  <option value="medium">medium</option>
+                  <option value="hard">hard</option>
+                </select>  
+      
+                <label for="setup-categories" class="visuallyhidden">
+                  Category
+                </label>
+                <select name="categories" id="setup-categories" class="setup-new-categories">
+                  <option value="9">General Knowledge</option>
+                  <option value="15">Video Games</option>
+                  <option value="11">Film</option>
+                  <option value="21">Sports</option>
+                  <option value="18">Computers</option>
+                  <option value="14">Television</option>
+                </select>
+                <button>Start Game!</button>
+              </form>
+        </section>
 
-          <button>Start Game!</button>
-        </form>
-      </div>
+        <setion class="setup-new">
+          <form action="" class="setup-form-new">
+              <label class="visuallyhidden" for="setup-name">
+                Name
+              </label>
+              <input type="text" class="setup-new-name" name="name" id="setup-new-name">
+    
+              <label class="visuallyhidden" for="setup-new-difficulty">
+                Difficulty
+              </label>
+              <select name="difficulty" id="setup-new-difficulty" class="setup-new-difficulty">
+                <option value="easy">easy</option>
+                <option value="medium">medium</option>
+                <option value="hard">hard</option>
+              </select>  
+    
+              <label for="setup-categories" class="visuallyhidden">
+                Category
+              </label>
+              <select name="categories" id="setup-categories" class="setup-new-categories">
+                <option value="9">General Knowledge</option>
+                <option value="15">Video Games</option>
+                <option value="11">Film</option>
+                <option value="21">Sports</option>
+                <option value="18">Computers</option>
+                <option value="14">Television</option>
+              </select>
+              <button>Start Game!</button>
+            </form>
+          </section>
+
+        <!-- <section class="level">
+          <div class="wrapper-large level-wrapper">
+            <div class="level-player-side">
+              <div class="level-player-img">
+                <img src="images/dug.jpg" alt="Dug the dog!">
+              </div>
+              
+              <p class="level-player-lives">Lives 10/10</p>
+              <div class="level-player-answers">
+                <p class="level-player-answer-one">1. Answer A</p>
+                <p class="level-player-answer-two">2. Answer B</p>
+                <p class="level-player-answer-three">3. Answer C</p>
+                <p class="level-player-answer-four">4. AnswerD</p>
+              </div>
+            </div>
+
+            <div class="level-opponent-side">
+                <div class="level-opponent-img">
+                <img src="images/dug.jpg" alt="Dug the dog!">
+              </div>
+              
+              <p class="level-opponent-lives">Lives 3/3</p>
+            </div>
+          </div>
+        </section> -->
+      </div> <!-- End wrapper-->
     </section>
   </main>
 </body>

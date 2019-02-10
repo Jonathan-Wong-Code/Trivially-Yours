@@ -1,9 +1,23 @@
 .level {
   
+  display:grid;
+  grid-template-columns: [full-start] 1fr [middle-start] repeat(12,[col-start] minmax(min-content, 6.6666rem,) [col-end]) [middle-end ]1fr[ full-end];
 
-  &-wrapper {
-    display: flex;
-    justify-content: space-between
+  &-player-side{
+    grid-column:2/5;
+  }
+
+  &-question-area{
+    grid-column: 5/11;
+    text-align: center;
+  }
+
+  &-opponent-side{
+    grid-column: 11/14;
+  }
+
+  &-player-img{
+
   }
 
   &-player-lives{

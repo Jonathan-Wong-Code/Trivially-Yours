@@ -38,6 +38,12 @@ ul{
 	margin:0;
 }
 
+img{
+  width:100%;
+  display:block;
+  object-fit: cover;
+}
+
 .is-active{
 	font-weight:bold;
 }

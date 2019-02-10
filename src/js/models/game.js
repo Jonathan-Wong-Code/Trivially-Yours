@@ -52,6 +52,10 @@ export default class Game{
     }
   }
 
+  findPlayer = (id) =>{
+    return this.playerList.find(player => player.id === id);
+  }
+
   savePlayerData(){
     localStorage.setItem("players", JSON.stringify(this.playerList));
   }

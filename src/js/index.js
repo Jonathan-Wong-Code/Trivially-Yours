@@ -20,19 +20,21 @@ const startNewGameControl = async () => {
   const difficulty = document.querySelector(".setup-new-difficulty").value;
   const category = document.querySelector(".setup-new-categories").value;
 
-  //If no player create new player.
+  
   await state.game.startNewGame(category,difficulty);
 
+  //If no player create new player.
   if(!state.player){
     state.player = state.game.addPlayer(playerName);
   } 
 
   setupView.clearGameArea();
   state.question = state.game.getQuestion();
+  state.opponent = state.game.opponents[state.game.level],
   gameView.renderGame(
     state.player,
     state.question, 
-    state.game.opponents[state.game.level],
+    state.opponent,
     state.game.score
   );
 }
@@ -76,7 +78,8 @@ document.querySelector(".game").addEventListener("click", (e)=>{
     //Select player to continue with on player continue
     if(e.target.matches(".setup-continue-choose-player")){
      const player = e.target.closest(".setup-continue-choose-player");
-     const id = player.dataset.playerid;
+     const id = player.dataset.playerid; 
+     //Not camelcase because data attribute doesn't like capital letters. Tried with camelCase and did not work.
      state.player = state.game.findPlayer(id);
      setupView.clearGameArea();
      setupView.renderContinueGame(state.player);
@@ -88,19 +91,33 @@ document.querySelector(".game").addEventListener("click", (e)=>{
       const answer = button.dataset.answer;
       const result = state.game.guessAnswer(answer, state.question);
       
-      //update game score
+    
       if(result){
         state.player.guessRight();
+        console.log(state.opponent);
+        state.opponent.loseLife();
         //update coins
       } else {
         state.player.guessWrong(); 
       }
-
+      const opponentLifePerc = parseInt(state.opponent.lives,10)/3 *100;
       const playerLifePerc = parseInt(state.player.lives,10)/10 * 100;
-      gameView.updateGameStats(playerLifePerc, state.game.score, state.player.lives);
+
+      gameView.updateGameStats(
+        playerLifePerc, 
+        state.game.score, 
+        state.player.lives,
+        opponentLifePerc,
+        state.opponent.lives
+      );
+        
+      //clear question area
+      //render dialogue?
+      //get a new question from game model.
+      //render NEW question to question area.
      
       //Check to see if life = 0. if so end game.
-      //Check to see if game is over state.game.questions.length === 0;
+      //Check to see if game is over state.game.questions.length === 0 ** level ===3;
     }
 });
 

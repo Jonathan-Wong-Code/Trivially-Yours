@@ -14,7 +14,7 @@ export default class Game{
 
   async startNewGame(category, difficulty){
     this.questions = [];
-
+    
     const response = await axios.get(`https://opentdb.com/api.php?amount=12&category=${category}&difficulty=${difficulty}`);
 
     const data = response.data.results;
@@ -26,9 +26,9 @@ export default class Game{
         allAnswers : [question.correct_answer, ...question.incorrect_answers]
       });
     }));
-
-    this.setupOpponents();
     this.shuffleAnswers();
+    this.setupOpponents();
+    
     this.score = 0;
     this.level = 0;
     this.win = false;
@@ -84,17 +84,17 @@ export default class Game{
   getQuestion(){  //check length property.
     const randomNum = Math.floor(Math.random() * 12)+1;
     const returnedQuestion = this.questions[randomNum];
-    
+
     this.questions.splice(randomNum, 1);
 
     return returnedQuestion;
   }
 
    setupOpponents (){   
-    const jenny = new Opponent("Jenny");
-    const adam = new Opponent("Adam");
-    const asaf = new Opponent("Asaf");
-    const brownDog = new Opponent("Brown Dog");
+    const jenny = new Opponent("Jenny", "images/jenny.jpg");
+    const adam = new Opponent("Adam", "images/adam.jpg");
+    const asaf = new Opponent("Asaf", "images/asaf.jpg");
+    const brownDog = new Opponent("Brown Dog", "images/browndog.png");
 
     this.opponents = [jenny, adam, asaf, brownDog]
   }

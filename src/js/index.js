@@ -29,7 +29,12 @@ const startNewGameControl = async () => {
 
   setupView.clearGameArea();
   state.question = state.game.getQuestion();
-  gameView.renderGame(state.player,state.question, state.game.opponents[state.game.level]);
+  gameView.renderGame(
+    state.player,
+    state.question, 
+    state.game.opponents[state.game.level],
+    state.game.score
+  );
 }
 
 //Executes Continues a game
@@ -43,13 +48,13 @@ const startContinueGameControl = async (e) => {
   gameView.renderGame(state.player, state.question, state.game.opponent[state.game.level]);
 }
 
-//Select New Game
+//Select New Game off Login Screen
 document.querySelector(".login-new").addEventListener("click", () =>{
   setupView.clearGameArea();
   setupView.renderNewGame();
 });
 
-//Continue Game
+//Continue Game off login Screen
 document.querySelector(".login-continue").addEventListener("click", () =>{
   setupView.renderPlayerList(state.game.playerList);
 });
@@ -58,17 +63,17 @@ document.querySelector(".login-continue").addEventListener("click", () =>{
 document.querySelector(".game").addEventListener("click", (e)=>{ 
     e.preventDefault();
 
-    //Start New Game Login
+    //Start New Game AFTER SETUP
     if(e.target.matches(".setup-new-submit")){    
       startNewGameControl();
     }
 
-    //Continue Game Login
+    //Continue GAME AFTER SETUP
     if(e.target.matches(".setup-continue-submit")){  
       startContinueGameControl(e);
     }
 
-    //Select player to continue with
+    //Select player to continue with on player continue
     if(e.target.matches(".setup-continue-choose-player")){
      const player = e.target.closest(".setup-continue-choose-player");
      const id = player.dataset.playerid;
@@ -82,23 +87,20 @@ document.querySelector(".game").addEventListener("click", (e)=>{
       const button = e.target.closest(".answer-btn");
       const answer = button.dataset.answer;
       const result = state.game.guessAnswer(answer, state.question);
+      
       //update game score
       if(result){
         state.player.guessRight();
-
         //update coins
       } else {
-        state.player.guessWrong();
-        const playerLifePerc = parseInt(state.player.lives,10)/10 * 100;
-        document.querySelector('.level-player-lives', '::before').style.width = `${playerLifePerc}%`
-        if(playerLifePerc < 66 && playerLifePerc > 33){
-          document.querySelector('.level-player-lives', '::before').style.backgroundColor='yellow';
-        } else if( playerLifePerc < 33){
-          document.querySelector('.level-player-lives', '::before').style.backgroundColor='red';
-        }
-        //Render life change
+        state.player.guessWrong(); 
       }
+
+      const playerLifePerc = parseInt(state.player.lives,10)/10 * 100;
+      gameView.updateGameStats(playerLifePerc, state.game.score, state.player.lives);
      
+      //Check to see if life = 0. if so end game.
+      //Check to see if game is over state.game.questions.length === 0;
     }
 });
 

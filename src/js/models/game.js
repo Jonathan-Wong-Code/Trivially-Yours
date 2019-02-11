@@ -1,5 +1,7 @@
 import axios from 'axios';
 import Player from './player';
+import Opponent from './opponent';
+
 export default class Game{
   constructor(){
     this.questions = [];
@@ -30,7 +32,6 @@ export default class Game{
     this.score = 0;
     this.level = 0;
     this.win = false;
-    console.log(this.questions[1]);
   }
 
   //https://medium.com/@fyoiza/how-to-randomize-an-array-in-javascript-8505942e452 
@@ -65,11 +66,12 @@ export default class Game{
     //If the player guess index = the correct answer index question is right!
     if(playerGuess === question.correctAnswer){
       this.score +=2;
-      this.questions.shift();
       console.log("win")
       return true;
     } else{
-      this.score -=1;
+      if(this.score > 0){
+        this.score -=1;
+      }
       console.log("lose")
       return false;
     }
@@ -79,29 +81,22 @@ export default class Game{
     return this.playerList.find(player => player.id === id);
   }
 
-  getQuestion(){  ;
+  getQuestion(){  //check length property.
     const randomNum = Math.floor(Math.random() * 12)+1;
     const returnedQuestion = this.questions[randomNum];
+    
     this.questions.splice(randomNum, 1);
+
     return returnedQuestion;
   }
 
-   setupOpponents (){
-    const opponents = [{
-      name : "Tomato Queen",
-      life : 3,
-    }, {
-      name : "CAPTAIN COOL YEAH",
-      life : 3
-    }, {
-      name : "Safi the Destroyer",
-      life : 3
-    }, {
-      name : "DUGGLEGANGER",
-      life : 3
-    }];
-  
-    this.opponents = opponents;
+   setupOpponents (){   
+    const jenny = new Opponent("Jenny");
+    const adam = new Opponent("Adam");
+    const asaf = new Opponent("Asaf");
+    const brownDog = new Opponent("Brown Dog");
+
+    this.opponents = [jenny, adam, asaf, brownDog]
   }
 
   savePlayerData(){

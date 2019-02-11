@@ -67,6 +67,7 @@ export const renderContinueGame = (player) =>{
 }
 
 export const renderNewGame = () =>{
+
   const markup = `
   <setion class="setup-new">
     <form action="" class="setup-new-form">

@@ -101,3 +101,7 @@ export const renderNewGame = () =>{
   `
   document.querySelector(".game").insertAdjacentHTML("beforeend", markup);
 }
+
+export const clearGameArea = () =>{
+  document.querySelector(".game").innerHTML = '';
+}  

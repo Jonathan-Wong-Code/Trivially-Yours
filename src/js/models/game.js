@@ -4,8 +4,9 @@ export default class Game{
   constructor(){
     this.questions = [];
     this.playerList = [];
+    this.opponents = []
     this.score = 0;
-    this.level = 1;
+    this.level = 0;
     this.win = false;
   };
 
@@ -20,13 +21,32 @@ export default class Game{
         question : question.question,
         correctAnswer : question.correct_answer,
         incorrectAnswers : question.incorrect_answers,
+        allAnswers : [question.correct_answer, ...question.incorrect_answers]
       });
     }));
 
+    this.setupOpponents();
+    this.shuffleAnswers();
     this.score = 0;
     this.level = 1;
     this.win = false;
     console.log(this.questions);
+  }
+
+  //https://medium.com/@fyoiza/how-to-randomize-an-array-in-javascript-8505942e452 
+  //Shuffle Algorthim
+  shuffleAnswers(){
+    this.questions.forEach((question) =>{
+      let shuffledAnswers = [];
+
+      while(question.allAnswers.length !== 0){
+        let randomIndex = Math.floor(Math.random()*question.allAnswers.length);
+        shuffledAnswers.push(question.allAnswers[randomIndex]);
+        question.allAnswers.splice(randomIndex,1);
+      };
+
+      question.allAnswers= shuffledAnswers;
+    });  
   }
 
   addPlayer(name, totalScore = 0, ){
@@ -52,8 +72,33 @@ export default class Game{
     }
   }
 
-  findPlayer = (id) =>{
+  findPlayer(id){
     return this.playerList.find(player => player.id === id);
+  }
+
+  getQuestion(){  
+    const randomNum = Math.floor(Math.random() * this.questions.length) + 1;
+    const returnedQuestion = this.questions[randomNum];
+    this.questions.splice(randomNum, 1);
+    return returnedQuestion;
+  }
+
+   setupOpponents (){
+    const opponents = [{
+      name : "Tomato Queen",
+      life : 3,
+    }, {
+      name : "CAPTAIN COOL YEAH",
+      life : 3
+    }, {
+      name : "Safi the Destroyer",
+      life : 3
+    }, {
+      name : "DUGGLEGANGER",
+      life : 3
+    }];
+  
+    this.opponents = opponents;
   }
 
   savePlayerData(){

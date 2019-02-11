@@ -1,5 +1,12 @@
+const createAnswer = (answer, index) =>`
+    <li>
+      <button class="level-question-answer-one answer-btn" data-answer='${answer}'>
+        ${index+1}. ${answer}
+      </button>
+    </li>
+`
 
-const renderLevel = (player, question, opponent) =>{
+export const renderGame = (player, question, opponent) =>{
   const markup = `
   <section class="level">
     <div class="level-player-side">
@@ -13,29 +20,7 @@ const renderLevel = (player, question, opponent) =>{
     <div class="level-question-area">
       <p class="level-question-question"> ${question.question}</p>
       <ul class="level-question-answers">
-          <li>
-            <button class="level-question-answer-one answer-btn" data-answer='0'>
-              1. Answer A
-            </button>
-          </li>
-          
-          <li>
-            <button class="level-question-answer-two answer-btn" data-answer='1'>
-              2. Answer B
-            </button>
-          </li>
-
-          <li>
-            <button class="level-question-answer-three answer-btn" data-answer='2'>
-              3. Answer C
-            </button>
-          </li>
-
-          <li>
-            <button class="level-question-answer-four answer-btn" data-answer='3'>
-              4. Answer D
-            </button>
-          </li>
+        ${question.allAnswers.map((answer, index) => createAnswer(answer,index)).join('')}
       </ul>
     </div>
 
@@ -43,9 +28,11 @@ const renderLevel = (player, question, opponent) =>{
         <div class="level-opponent-img">
           <img src="images/dug.jpg" alt="Dug the dog!">
         </div>
-        <p class="level-opponent-lives">Lives 3/3</p>
-        <p class="level-opponent-name">Jenny</p>
+        <p class="level-opponent-lives">Lives ${opponent.life}/3</p>
+        <p class="level-opponent-name">${opponent.name}</p>
     </div>       
   </section>
   `
+
+  document.querySelector(".game").insertAdjacentHTML("beforeend", markup);
 }

@@ -9,11 +9,11 @@ export default class Player{
     this.id = uuid();
   }
 
-  answerWrong(){ 
+  guessWrong(){ 
     this.lives -=1; 
   }
 
-  answerRight(){
+  guessRight(){
     this.coins += 1;
   }
 

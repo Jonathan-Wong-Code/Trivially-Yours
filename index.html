@@ -6,6 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
+
+    html{
+      font-size:125%;
+    }
     .wrapper{
       max-width:1280px;
       margin:0 auto;
@@ -29,6 +33,53 @@
     .show{
       display:block;
     }
+
+    .question-box{
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .question-box h3{
+      text-align: center;
+      width:90%;
+      margin:0 auto;
+      font-size:2rem;
+    }
+
+    ul {
+      list-style-type: none;
+      margin:0;
+      padding: 0;
+    }
+
+    label{
+      display:block;
+      text-align: center;
+    }
+
+    button{
+      display:block;
+      margin:0 auto;
+    }
+    form{
+      border:1px solid black;
+      margin:50px;
+      text-align: center;
+      margin:auto;
+      display:flex;
+      flex-direction: column;
+      align-items:center;
+      background-color:grey;
+    }
+   
+    .game-area{
+      display:flex;
+      flex-direction: column;
+      
+    }
+   
   </style>
 </head>
 <body>
@@ -38,12 +89,13 @@
   <main class="game-area">
     <section class="setup-new">
       <div class="wrapper">
-        <form action="" class="setup-form-new">
+          <form action="" class="setup-form-new">
+  
             <label class="setup-label" for="setup-name">
               Name
             </label>
             <input type="text" class="setup-name" name="name" id="setup-name">
-            
+          
             <label for="setup-number-questions" class="setup-label">
               Choose number of questions!
             </label>
@@ -76,36 +128,46 @@
             </select>
             <button class="setup-button">Start Game!</button>
           </form>
+
+      </div>
+    </section>
+
+    <section class="question">
+      <div class="wrapper">
+        <div class="question-header">
+          <h2 class="question-count">Question 5/20</h2>
+          <h3 class="question-correct-answers">Correct Answers: 0</h3>
+          <p>Player: Jon</p>
+        </div>
+        
+        <div class="question-box">
+          <h3 class="question-question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia et voluptatibus molestiae minus rerum eum expedita tempore. Veritatis tempora maxime perspiciatis quia laboriosam odit ab a sed consequuntur expedita. Fuga!</h3>
+          <ul class="level-question-answers">
+            <button>Answer A</button>
+            <button>Answer B</button>
+            <button>Answer C</button>
+            <button>Answer D</button>
+          </ul>
+          <button class="question-next hidden">Next Question</button>
+        </div>
+      </div>
+    </section>
+
+      <section class="play-again">
+        <div class="wrapper">
+          <div class="play-again-top">
+            <h2 class="play-again-heading">Game Over!</h2>
+            <p class="play-again-stats">You got 5 out of 10</p>
+          </div>
+          <div class="play-again-img-box">
+            <img src="images/smiley.jpg" alt="Smiley emoji" class="play-again-img">
+          </div>
+          <div class="play-again-bottom">
+            <p class="play-again-message">You got over half right! </p>
+            <button class="play-again-button"> Play Again </button>
+          </div>
         </div>
       </section>
-
-      <!-- <section class="question">
-        <div class="wrapper">
-          <div class="question-header">
-            <h2 class="question-correct-answers">Correct Answers: 0</h2>
-            <p>Player: Jon</p> 
-          </div>
-          
-          <div class="question-box">
-            <h3 class="question-question">Question</h3>
-            <ul class="level-question-answers">
-              <li><button>Answer A</button></li> 
-              <li><button>Answer A</button></li> 
-              <li><button>Answer A</button></li> 
-              <li><button>Answer A</button></li> 
-            </ul>
-            <button class="question-next hidden">Next Question</button>
-          </div>
-        </div>
-      </section> -->
-
-      <!-- <section class="play-again">
-        <h2 class="play-again-heading">Game Over!</h2>
-        <p class="play-again-stats">You got 8 out of 20</p>
-        <div class="play-again-img-box">
-          <img src="images/smiley.jpg" alt="A smiley face!" class="play-again-img">
-        </div>
-      </section> -->
      </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>

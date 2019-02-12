@@ -3,15 +3,14 @@ const game = {
      totalQuestions : 0,
      correctAnswers : 0,
      currentQuestionNumber : 0,
-     win : false,
 
-    async startNewGame(category, difficulty,numQuestions){
+    async startNewGame(category, difficulty,numQuestions) {
       this.questions = [];   
       const response = await axios.get(`https://opentdb.com/api.php?amount=${numQuestions}&category=${category}&difficulty=${difficulty}`);
        
       const data = response.data.results;
       
-      data.forEach((question =>{
+      data.forEach((question => {
         this.questions.push({
           question : question.question,
           correctAnswer : question.correct_answer,
@@ -21,28 +20,26 @@ const game = {
       }));
 
       this.shuffleAnswers();
-      this.correctAnswers = 0 
-     
+      this.correctAnswers = 0;
     },
 
   //https://medium.com/@fyoiza/how-to-randomize-an-array-in-javascript-8505942e452 
   //Shuffle Algorthim
-    shuffleAnswers(){
-      this.questions.forEach((question) =>{
+    shuffleAnswers() {
+      this.questions.forEach((question) => {
         let shuffledAnswers = [];
   
-        while(question.allAnswers.length !== 0){
+        while(question.allAnswers.length !== 0) {
           let randomIndex = Math.floor(Math.random()*question.allAnswers.length);
           shuffledAnswers.push(question.allAnswers[randomIndex]);
           question.allAnswers.splice(randomIndex,1);
         };
   
-        question.allAnswers= shuffledAnswers;
+        question.allAnswers = shuffledAnswers;
       });  
-    
     },
 
-    getQuestion(){  
+    getQuestion() {  
       const randomNum = Math.floor(Math.random() * this.questions.length);
       const returnedQuestion = this.questions[randomNum];
 
@@ -52,15 +49,14 @@ const game = {
       return returnedQuestion;
     },
 
-    guessAnswer(playerGuess, question){
-      console.log(question);
-      //If the player guess index = the correct answer index question is right!
-      if(playerGuess === question.correctAnswer){
+    guessAnswer(playerGuess, question) {
+      //We have to use index instead of text value due to ' and special characters in API.
+      const answerIndex = question.allAnswers.indexOf(question.correctAnswer);
+      playerGuess = parseInt(playerGuess,10);
+      if(playerGuess === answerIndex) {
         this.correctAnswers +=1;
-        console.log("win")
         return true;
-      } else{      
-        console.log("lose")
+      } else {      
         return false;
       }
     },
@@ -70,13 +66,13 @@ const game = {
     const state = {};
     const gameArea = $(".game-area");
   
-    const setupGameControl = async () =>{
+    const setupGameControl = async () => {
       const playerName = $(".setup-name").val();
       const difficulty = $(".setup-difficulty").val();
       const category = $(".setup-categories").val();
       const numQuestions = $(".setup-number-questions").val(); 
      
-      await game.startNewGame(category,difficulty, numQuestions);
+      await game.startNewGame(category, difficulty, numQuestions);
      
       game.totalQuestions = game.questions.length;    
       state.question = game.getQuestion();
@@ -100,41 +96,32 @@ const game = {
     // $(".setup-form-new").on("submit", (e)=>{
     //   e.preventDefault();
     //   setupGameControl(e);
-    // });
-
-    
+    // });  
     gameArea.on("click", (e) =>{
       e.preventDefault();
-      console.log(e.target);
-      if(e.target.matches(".answer-btn")){
+
+      if(e.target.matches(".answer-btn")) {
         const button = e.target.closest(".answer-btn");
         const answer = button.dataset.answer;
         const result = game.guessAnswer(answer, state.question);
+        const showNextQuestionBtn =  $(".question-next");
+        const correctAnswerIndex = 
+          state.question.allAnswers.indexOf(state.question.correctAnswer);
 
         updateScore(game.correctAnswers);
-
-        $(".answer-btn").attr("disabled", "true");
+        setButtonAnswerStyles(result, answer, correctAnswerIndex);
         
-        if(result){
-          $(`[data-answer='${answer}']`).css("background-color", "green");
-        } else {
-          $(`[data-answer='${state.question.correctAnswer}']`).css("background-color", "green");
-
-          $(`[data-answer='${answer}']`).css("background-color", "red");
-        }
-
-        const buttonNext =  $(".question-next");
-        if(game.questions.length === 0){
+        if(game.questions.length === 0) {
           renderGameOverText();
-          buttonNext.text("View score!");
+          showNextQuestionBtn.text("View score!");
         }
-
-        buttonNext.toggleClass("hidden");
+        //Show next question button
+        showNextQuestionBtn.toggleClass("hidden");
         
-        //Next question button clicked
-        buttonNext.on("click", () =>{
-          buttonNext.toggleClass("hidden");
-          
+        //When we click on "Next Question"
+        showNextQuestionBtn.on("click", () =>{
+          showNextQuestionBtn.toggleClass("hidden");
+     
           if(game.questions.length > 0) {
             state.question = game.getQuestion();
             updateQuestionNumber(game.currentQuestionNumber, game.totalQuestions);
@@ -145,31 +132,29 @@ const game = {
             renderPlayAgain(game.correctAnswers, game.totalQuestions, correctAnswerPerc);
           }  
         });   
-      }//End e.target.matches("answer-btn")  
+      }
 
-      if(e.target.matches(".play-again-button")){
-        console.log('play');
+      if(e.target.matches(".play-again-button")) {;
         renderSetup();
       }
    
-      if(e.target.matches(".setup-button")){
-        console.log('button');
-        setupGameControl()
+      if(e.target.matches(".setup-button")) {
+        setupGameControl();
       }
-    });//End event delegation
+    });
 
     //******** View Logic ********//
 
     //*RENDER GAME **//
     const createAnswer = (answer, index) =>`
       <li>
-        <button class="level-question-answer-one answer-btn" data-answer='${answer}'>
+        <button class="level-question-answer-one answer-btn" data-answer='${index}'>
           ${index+1}. ${answer}
         </button>
       </li>
     `;
 
-    const renderGame = (question, playerName, totalQuestionNum, currentQuestionNum) =>{
+    const renderGame = (question, playerName, totalQuestionNum, currentQuestionNum) => {
       const markup = `
         <section class="question">
           <div class="wrapper">
@@ -190,12 +175,11 @@ const game = {
           </div>
         </section>
       `;
-
       gameArea.html(markup);   
     }
 
     //**RENDER QUESTION **//
-    const renderNewQuestion = (question) =>{
+    const renderNewQuestion = (question) => {
       const markup= `
         <h3 class="question-question">${question.question}</h3>
         <ul class="level-question-answers">
@@ -204,11 +188,10 @@ const game = {
         </ul>
         <button class="question-next hidden">Next Question</button>  
       `; 
-
       $(".question-box").html(markup);
     }
   
-    const updateScore = (correctAnswers) =>{
+    const updateScore = (correctAnswers) => {
       $(".question-correct-answers").text(`Correct Answers:${correctAnswers}`);
     }
 
@@ -216,45 +199,64 @@ const game = {
       $(".question-count").text(`Question ${currentQuestionNum}/${totalQuestionNum}`);
     }
 
-    const renderGameOverText = () =>{
+    const renderGameOverText = () => {
       $(".question-count").text(`Game Over!`);
     }
 
-    //**RENDERS PLAY AGAIN **//
-    const renderPlayAgain = (correctAnswers, totalQuestions, correctAnswersPerc) =>{
-    let imagePath, altText, scoreMessage;
-
-    if(correctAnswersPerc === 100) {
-      imagePath = "images/mexican-adam.jpg"
-      altText = "A picture of a young white male with a mexican hat";
-      scoreMessage = "Wow you got a perfect score!";
-    } else if (correctAnswersPerc < 100 && correctAnswersPerc >=50) {
-      imagePath = "images/smiley.jpg";
-      altText = "A smiley face emoji";
-      scoreMessage = "Nice job! You got over half of them right!"
-    } else {
-      imagePath = "images/sad.jpg";
-      altText = "A sad face emoji";
-      scoreMessage = "Sadface. Less than half right!"
+    //** Sets Button styles based on correct or wrong answer **//
+    const setButtonAnswerStyles = (result, playerAnswer, correctAnswer) =>{
+      $(".answer-btn").attr("disabled", "true");
+      playerAnswer =playerAnswer.toString();
+      console.log(correctAnswer);
+      console.log(playerAnswer);
+      if(result){
+        $(`[data-answer='${playerAnswer}']`).css("background-color", "green");
+      } else {
+        $(`[data-answer='${correctAnswer}']`).css("background-color", "green");
+        $(`[data-answer='${playerAnswer}']`).css("background-color", "red");
+      }
     }
 
-    const markup = `
+    //**RENDERS PLAY AGAIN **//
+    const renderPlayAgain = (correctAnswers, totalQuestions, correctAnswersPerc) => {
+      let imagePath, altText, scoreMessage;
+
+      if(correctAnswersPerc === 100) {
+        imagePath = "images/mexican-adam.gif";
+        altText = "A picture of a young white male with a mexican hat";
+        scoreMessage = "Wow you got a perfect score!";
+      } else if (correctAnswersPerc < 100 && correctAnswersPerc >=50) {
+        imagePath = "images/smiley.jpg";
+        altText = "A smiley face emoji";
+        scoreMessage = "Nice job! You got over half of them right!";
+      } else {
+        imagePath = "images/sad.jpg";
+        altText = "A sad face emoji";
+        scoreMessage = "Sadface. Less than half right!";
+      }
+
+      const markup = `
         <section class="play-again">
-          <h2 class="play-again-heading">Game Over!</h2>
-          <p class="play-again-stats">You got ${correctAnswers} out of ${totalQuestions}</p>
+          <div class="play-again-top-text">
+            <h2 class="play-again-heading">Game Over!</h2>
+            <p class="play-again-stats">You got ${correctAnswers} out of ${totalQuestions}</p>
+          </div>
           <div class="play-again-img-box">
             <img src=${imagePath} alt=${altText} class="play-again-img">
           </div>
-          <p class="play-again-message">${scoreMessage} </p>
-          <button class="play-again-button"> Play Again </button>
+          <div class="play-again-bottom">
+            <p class="play-again-message">${scoreMessage} </p>
+            <button class="play-again-button"> Play Again </button>
+          </div>
+
         </section>
       `;
-      gameArea.html(markup)  
+      gameArea.html(markup);  
     }
 
     //*RENDERS NEW GAME SCREEN*//
 
-    const renderSetup = () =>{
+    const renderSetup = () => {
       const markup = `
         <section class="setup-new">
           <div class="wrapper">
@@ -298,10 +300,9 @@ const game = {
             </form>
           </div>
         </section>
-        `;
-
-        gameArea.html(markup);
-      }    
+      `;
+      gameArea.html(markup);
+    }    
   });
   
 

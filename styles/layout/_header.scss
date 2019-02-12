@@ -1,0 +1,13 @@
+.header{
+  padding:1px;
+  &-heading {
+    margin:0;
+    font-size:4rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing:20px;
+    background: linear-gradient(120deg, rgba($color-black,.8) 50%, rgba($color-primary,.8));
+    padding:2rem 2rem;
+    
+  }
+}

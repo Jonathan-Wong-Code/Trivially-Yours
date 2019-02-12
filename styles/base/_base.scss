@@ -3,8 +3,12 @@ html {
 }
 
 body {
-  font-size:1.5rem;
+  font-size:1.3rem;
+  letter-spacing: 10px;
+  font-family: "Bangers", sans-serif;
   background-image: url("./../images/background.png");
+  color:$color-white;
+  line-height:1.5;
 }
 .wrapper{
   max-width:1280px;

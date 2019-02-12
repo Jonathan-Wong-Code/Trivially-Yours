@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .wrapper{
+      max-width:1280px;
+      margin:0 auto;
+    }
+
+    .header{
+      text-align: center;
+    }
+
+    .question-header{
+      text-align: center;
+    }
+    button{
+      display:block;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    .show{
+      display:block;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1 class="header-heading">Trivia!</h1>
+  </header>
+  <main class="game-area">
+    <section class="setup-new">
+      <div class="wrapper">
+        <form action="" class="setup-form-new">
+            <label class="setup-label" for="setup-name">
+              Name
+            </label>
+            <input type="text" class="setup-new-name" name="name" id="setup-name">
+            
+            <label for="setup-number-questions" class="setup-label">
+              Choose number of questions!
+            </label>
+            <select name="questions" id="setup-number-questions" class="setup-new-question-number">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+
+            <label for="setup-new-difficulty" class="setup-label">
+              Difficulty
+            </label>
+            <select name="difficulty" id="setup-difficulty" class="setup-difficulty">
+              <option value="easy">easy</option>
+              <option value="medium">medium</option>
+              <option value="hard">hard</option>
+            </select>  
+
+            <label for="setup-categories" class="setup-label">
+              Category
+            </label>
+            <select name="categories" id="setup-categories" class="setup-categories">
+              <option value="9">General Knowledge</option>
+              <option value="15">Video Games</option>
+              <option value="11">Film</option>
+              <option value="21">Sports</option>
+              <option value="18">Computers</option>
+              <option value="14">Television</option>
+            </select>
+            <button>Start Game!</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="question">
+        <div class="wrapper">
+          <div class="question-header">
+            <h2 class="question-correct-answers">Correct Answers: 0</h2>
+            <p>Player: Jon</p> 
+          </div>
+          
+          <div class="question-box">
+            <h3 class="question-question">Question</h3>
+            <ul class="level-question-answers">
+              <li><button>Answer A</button></li> 
+              <li><button>Answer A</button></li> 
+              <li><button>Answer A</button></li> 
+              <li><button>Answer A</button></li> 
+            </ul>
+            <button class="question-next hidden">Next Question</button>
+          </div>
+        </div>
+      </section>
+     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+    <script src="scripts/script.js"></script>
+</body>
+</html>

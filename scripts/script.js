@@ -5,9 +5,10 @@ const game = {
      currentQuestionNumber : 0,
 
     async startNewGame(category, difficulty,numQuestions) {
-      this.questions = [];   
+
+      this.resetStats();
+
       const response = await axios.get(`https://opentdb.com/api.php?amount=${numQuestions}&category=${category}&difficulty=${difficulty}`);
-       
       const data = response.data.results;
       
       data.forEach((question => {
@@ -20,7 +21,13 @@ const game = {
       }));
 
       this.shuffleAnswers();
+      
+    },
+
+    resetStats() {
+      this.questions = [];   
       this.correctAnswers = 0;
+      this.currentQuestionNumber =0;
     },
 
   //https://medium.com/@fyoiza/how-to-randomize-an-array-in-javascript-8505942e452 

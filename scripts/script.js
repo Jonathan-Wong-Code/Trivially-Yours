@@ -133,7 +133,9 @@ const game = {
     });
 
 
-    //View Logic
+    //******** View Logic ********//
+
+    //*RENDER GAME **//
     const clearGameArea = () =>{
       gameArea.html("");
     }
@@ -169,13 +171,7 @@ const game = {
       </li>
     `;
 
-    const updateScore = (correctAnswers) =>{
-      $(".question-correct-answers").text(`Correct Answers:${correctAnswers}`);
-    }
-
-    const clearQuestionArea = () =>{
-      $(".question-box").html("");
-    }
+    //**RENDER QUESTION **//
 
     const renderNewQuestion = (question) =>{
       const markup= `
@@ -189,6 +185,16 @@ const game = {
 
       $(".question-box").html(markup);
     }
+
+    const updateScore = (correctAnswers) =>{
+      $(".question-correct-answers").text(`Correct Answers:${correctAnswers}`);
+    }
+
+    const clearQuestionArea = () =>{
+      $(".question-box").html("");
+    }
+
+    //**RENDERS PLAY AGAIN **//
   });
   
 

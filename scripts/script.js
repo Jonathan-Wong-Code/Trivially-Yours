@@ -1,6 +1,7 @@
 
 const game = {
      questions : [],
+     totalQuestions : 0,
      correctAnswers : 0,
      win : false,
 
@@ -78,41 +79,54 @@ const game = {
       const numQuestions = e.target.elements.questions.value; 
 
       await game.startNewGame(category,difficulty, numQuestions);
-     
+      game.totalQuestions = game.questions.length;
+      console.log(game.totalQuestions);
       state.question = game.getQuestion();
 
-      clearGameArea();
+      // clearGameArea();
       renderGame(state.question, playerName);
+      // $(".answer-btn").on("click", function(){
+      //   console.log(this);
+      //   clearQuestionArea();
+      //   state.question = game.getQuestion();
+      //   renderNewQuestion(state.question);
+      //   console.log("logged");
+      // });
     }
     //Event Listeners
 
-    $(".setup-form-new").on("submit", async (e)=>{
+    $(".setup-form-new").on("submit", (e)=>{
       e.preventDefault();
       setupGameControl(e);
-    })
+    });
 
-    //Event Delegation is MUCH cleaner than having to re-select all the button on re-render
+    
     $(gameArea).on("click", (e) =>{
       if(e.target.matches(".answer-btn")){
         const button = e.target.closest(".answer-btn");
         const answer = button.dataset.answer;
         const result = game.guessAnswer(answer, state.question);
+
         updateScore(game.correctAnswers);
+
         $(".answer-btn").attr("disabled", "true");
         
         if(result){
           $(`[data-answer='${answer}']`).css("background-color", "green");
         } else {
-          //style incorrect button with red and correct with green
+          $(`[data-answer='${state.question.correctAnswer}']`).css("background-color", "green");
+
+          $(`[data-answer='${answer}']`).css("background-color", "red");
         }
         const buttonNext =  $(".question-next");
         buttonNext.toggleClass("hidden");
+        
         //Next question button clicked
-        buttonNext.on("click", (e) =>{
+        buttonNext.on("click", () =>{
           buttonNext.toggleClass("hidden");
           state.question = game.getQuestion();
           console.log(state.question);
-          clearQuestionArea();
+          
           renderNewQuestion(state.question);
         })
       }

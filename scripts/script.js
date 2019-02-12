@@ -113,7 +113,7 @@ const game = {
         
         if(game.questions.length === 0) {
           renderGameOverText();
-          showNextQuestionBtn.text("View score!");
+          updateViewScoreBtn();
         }
         //Show next question button
         showNextQuestionBtn.toggleClass("hidden");
@@ -145,7 +145,7 @@ const game = {
 
     //******** View Logic ********//
 
-    //*RENDER GAME **//
+    //Creates each Answer button from question mapping.
     const createAnswer = (answer, index) =>`
       <li>
         <button class="level-question-answer-one answer-btn" data-answer='${index}'>
@@ -154,6 +154,7 @@ const game = {
       </li>
     `;
 
+    //Renders Initial Game "board" start.
     const renderGame = (question, playerName, totalQuestionNum, currentQuestionNum) => {
       const markup = `
         <section class="question">
@@ -178,7 +179,7 @@ const game = {
       gameArea.html(markup);   
     }
 
-    //**RENDER QUESTION **//
+    //**Renders each new question**//
     const renderNewQuestion = (question) => {
       const markup= `
         <h3 class="question-question">${question.question}</h3>
@@ -199,16 +200,18 @@ const game = {
       $(".question-count").text(`Question ${currentQuestionNum}/${totalQuestionNum}`);
     }
 
+    const updateViewScoreBtn = () =>{
+      $(".question-next").text("View score!");
+    }
+
     const renderGameOverText = () => {
       $(".question-count").text(`Game Over!`);
     }
 
     //** Sets Button styles based on correct or wrong answer **//
-    const setButtonAnswerStyles = (result, playerAnswer, correctAnswer) =>{
+    const setButtonAnswerStyles = (result, playerAnswer, correctAnswer) => {
       $(".answer-btn").attr("disabled", "true");
-      playerAnswer =playerAnswer.toString();
-      console.log(correctAnswer);
-      console.log(playerAnswer);
+   
       if(result){
         $(`[data-answer='${playerAnswer}']`).css("background-color", "green");
       } else {
@@ -217,7 +220,7 @@ const game = {
       }
     }
 
-    //**RENDERS PLAY AGAIN **//
+    //**RENDERS PLAY AGAIN SCREEN **//
     const renderPlayAgain = (correctAnswers, totalQuestions, correctAnswersPerc) => {
       let imagePath, altText, scoreMessage;
 

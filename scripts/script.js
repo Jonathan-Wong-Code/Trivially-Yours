@@ -3,6 +3,7 @@ const game = {
      questions : [],
      totalQuestions : 0,
      correctAnswers : 0,
+     currentQuestionNumber : 0,
      win : false,
 
     async startNewGame(category, difficulty,numQuestions){
@@ -47,7 +48,8 @@ const game = {
       const randomNum = Math.floor(Math.random() * this.questions.length);
       const returnedQuestion = this.questions[randomNum];
       this.questions.splice(randomNum, 1);  
-      
+      this.currentQuestionNumber +=1;
+     
       return returnedQuestion;
     },
 
@@ -65,10 +67,10 @@ const game = {
     },
   }
 
-  const state = {};
+  
 
   $(function() {
-  
+    const state = {};
     const gameArea = $(".game-area");
     //Business Logic
 
@@ -84,7 +86,12 @@ const game = {
       state.question = game.getQuestion();
 
       // clearGameArea();
-      renderGame(state.question, playerName);
+      renderGame(
+        state.question, 
+        playerName, 
+        game.totalQuestions, 
+        game.currentQuestionNumber
+      );
       // $(".answer-btn").on("click", function(){
       //   console.log(this);
       //   clearQuestionArea();
@@ -118,16 +125,30 @@ const game = {
 
           $(`[data-answer='${answer}']`).css("background-color", "red");
         }
+
+
         const buttonNext =  $(".question-next");
+        if(game.questions.length === 0){
+          buttonNext.text("View score!");
+        }
         buttonNext.toggleClass("hidden");
         
         //Next question button clicked
         buttonNext.on("click", () =>{
           buttonNext.toggleClass("hidden");
-          state.question = game.getQuestion();
-          console.log(state.question);
+          console.log(game.currentQuestionNumber);
+          console.log(game.totalQuestions);
           
-          renderNewQuestion(state.question);
+          console.log(state.question);
+          if(game.questions.length > 0) {
+            state.question = game.getQuestion();
+            updateQuestion(game.currentQuestionNumber, game.totalQuestions);
+            renderNewQuestion(state.question);
+          } else {
+            game.totalQuestions = parseInt(game.totalQuestions,10);
+            const correctAnswerPerc = (game.correctAnswers/game.totalQuestions)*100;
+            renderPlayAgain(game.correctAnswers, game.totalQuestions, correctAnswerPerc);
+          }  
         })
       }
     });
@@ -140,12 +161,21 @@ const game = {
       gameArea.html("");
     }
 
-    const renderGame = (question, playerName) =>{
+    const createAnswer = (answer, index) =>`
+    <li>
+      <button class="level-question-answer-one answer-btn" data-answer='${answer}'>
+        ${index+1}. ${answer}
+      </button>
+    </li>
+  `;
+
+    const renderGame = (question, playerName, totalQuestionNum, currentQuestionNum) =>{
       const markup = `
       <section class="question">
         <div class="wrapper">
           <div class="question-header">
-            <h2 class="question-correct-answers">Correct Answers: 0</h2>
+            <h2 class="question-count">Question ${currentQuestionNum}/${totalQuestionNum}</h2>
+            <h3 class="question-correct-answers">Correct Answers: 0</h3>
             <p>Player: ${playerName}!</p>
           </div>
           
@@ -163,13 +193,7 @@ const game = {
       gameArea.html(markup);   
     }
 
-    const createAnswer = (answer, index) =>`
-      <li>
-        <button class="level-question-answer-one answer-btn" data-answer='${answer}'>
-          ${index+1}. ${answer}
-        </button>
-      </li>
-    `;
+   
 
     //**RENDER QUESTION **//
 
@@ -186,8 +210,13 @@ const game = {
       $(".question-box").html(markup);
     }
 
+    //**UPDATE SCORE **//
     const updateScore = (correctAnswers) =>{
       $(".question-correct-answers").text(`Correct Answers:${correctAnswers}`);
+    }
+
+    const updateQuestion = (currentQuestionNum,totalQuestionNum) =>{
+      $(".question-count").text(`Question ${currentQuestionNum}/${totalQuestionNum}`);
     }
 
     const clearQuestionArea = () =>{
@@ -195,9 +224,37 @@ const game = {
     }
 
     //**RENDERS PLAY AGAIN **//
+    //game.correctAnswers needed, game.totalQuestions and correctAnswersPerc
+    const renderPlayAgain = (correctAnswers, totalQuestions, correctAnswersPerc) =>{
+    let imagePath, altText, scoreMessage;
+
+    if(correctAnswersPerc === 100){
+      imagePath = "images/mexican-adam.jpg"
+      altText = "A picture of a young white male with a mexican hat";
+      scoreMessage = "Wow you got a perfect score!";
+    } else if (correctAnswersPerc < 100 && correctAnswersPerc >=50){
+      imagePath = "images/smiley.jpg";
+      altText = "A smiley face emoji";
+      scoreMessage = "Nice job! You got over half of them right!"
+    } else{
+      imagePath = "images/sad.jpg";
+      altText = "A sad face emoji";
+      scoreMessage = "Sadface. Less than half right!"
+    }
+
+    const markup = `
+      <section class="play-again">
+        <h2 class="play-again-heading">Game Over!</h2>
+        <p class="play-again-stats">You got ${correctAnswers} out of ${totalQuestions}</p>
+        <div class="play-again-img-box">
+          <img src=${imagePath} alt=${altText} class="play-again-img">
+        </div>
+        <p class="play-again-message">${scoreMessage} </p>
+        <button class="play-again-button"> Play Again </button>
+      </section>
+    `;
+    gameArea.html(markup)  
+  }
   });
   
 
-
-  // newArray = [1]
-  // array = [1,2,3]

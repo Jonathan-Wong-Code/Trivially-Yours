@@ -51,6 +51,8 @@
     border:5px solid $color-white;
     border-radius:10px;
     transition: transform .3s, background-color .3s;
+  
+
     &:hover, &:focus {
       transform: translateY(-3px);
       background-color:rgba($color-primary, .5);

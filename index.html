@@ -35,33 +35,20 @@
       flex-direction: column;
     }
 
-    .question-box h3{
-      text-align: center;
-      width:90%;
-      margin:0 auto;
-      font-size:2rem;
+    h2{
+      margin:0;
     }
 
-   
-
-    label{
-      display:block;
-      text-align: center;
-    }
 
     button{
       display:block;
       margin:0 auto;
     }
-    form{
-     
-     
-    }
+    
    
     .game-area{
       display:flex;
-      flex-direction: column;
-      
+      flex-direction: column; 
     }
    
   </style>
@@ -116,21 +103,23 @@
 
     <section class="question">
       <div class="wrapper">
-        <div class="question-header">
-          <h2 class="question-count">Question 5/20</h2>
-          <h2 class="question-correct-answers">Correct Answers: 0</h2>
-          <p>Player: Jon</p>
-        </div>
-        
-        <div class="question-box">
-          <h3 class="question-question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia et voluptatibus molestiae minus rerum eum expedita tempore. Veritatis tempora maxime perspiciatis quia laboriosam odit ab a sed consequuntur expedita. Fuga!</h3>
-          <ul class="level-question-answers">
-            <li><button>Answer A</button></li>  
-            <li><button>Answer A</button></li> 
-            <li><button>Answer A</button></li> 
-            <li><button>Answer A</button></li> 
-          </ul>
-          <button class="question-next hidden">Next Question</button>
+        <div class="question-content">
+          <div class="question-header">
+            <h2 class="question-count question-heading">Question 5/20</h2>
+            <h2 class="question-correct-answers question-heading">Score: 0</h2>
+            <p class="question-player-name">Player: Jon</p>
+          </div>
+          
+          <div class="question-box">
+            <h3 class="question-question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia et voluptatibus molestiae minus rerum eum expedita tempore. Veritatis tempora maxime perspiciatis quia laboriosam odit ab a sed consequuntur expedita. Fuga!</h3>
+            <ul class="question-answers">
+              <li><button>Answer A</button></li>  
+              <li><button>Answer A</button></li> 
+              <li><button>Answer A</button></li> 
+              <li><button>Answer A</button></li> 
+            </ul>
+            <button class="question-next hidden">Next Question</button>
+          </div>
         </div>
       </div>
     </section>

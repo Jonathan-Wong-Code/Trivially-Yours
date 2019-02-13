@@ -90,7 +90,7 @@ const game = {
         game.totalQuestions, 
         game.currentQuestionNumber
       );
-      // $(".answer-btn").on("click", function(){
+      // $(".question-answer-btn").on("click", function(){
       //   console.log(this);
       //   clearQuestionArea();
       //   state.question = game.getQuestion();
@@ -107,8 +107,8 @@ const game = {
     gameArea.on("click", (e) =>{
       e.preventDefault();
 
-      if(e.target.matches(".answer-btn")) {
-        const button = e.target.closest(".answer-btn");
+      if(e.target.matches(".question-answer-btn")) {
+        const button = e.target.closest(".question-answer-btn");
         const answer = button.dataset.answer;
         const result = game.guessAnswer(answer, state.question);
         const showNextQuestionBtn =  $(".question-next");
@@ -154,8 +154,8 @@ const game = {
 
     //Creates each Answer button from question mapping.
     const createAnswer = (answer, index) =>`
-      <li>
-        <button class="level-question-answer-one answer-btn" data-answer='${index}'>
+      <li class="question-list-item">
+        <button class="question-answer-btn" data-answer='${index}'>
           ${index+1}. ${answer}
         </button>
       </li>
@@ -166,19 +166,21 @@ const game = {
       const markup = `
         <section class="question">
           <div class="wrapper">
-            <div class="question-header">
-              <h2 class="question-count">Question ${currentQuestionNum}/${totalQuestionNum}</h2>
-              <h3 class="question-correct-answers">Correct Answers: 0</h3>
-              <p>Player: ${playerName}!</p>
-            </div>
-            
-            <div class="question-box">
-              <h3 class="question-question">${question.question}</h3>
-              <ul class="level-question-answers">
-              ${question.allAnswers
-                .map((answer, index) => createAnswer(answer,index)).join('')} 
-              </ul>
-              <button class="question-next hidden">Next Question</button>
+            <div class="question-content">
+              <div class="question-header">
+                <h2 class="question-count question-heading">Question ${currentQuestionNum}/${totalQuestionNum}</h2>
+                <h2 class="question-correct-answers question-heading">Correct Answers: 0</h2>
+                <p class="question-player-name">Player: ${playerName}!</p>
+              </div>
+              
+              <div class="question-box">
+                <h3 class="question-question">${question.question}</h3>
+                <ul class="question-answers">
+                ${question.allAnswers
+                  .map((answer, index) => createAnswer(answer,index)).join('')} 
+                </ul>
+                <button class="question-next hidden">Next Question</button>
+              </div>
             </div>
           </div>
         </section>
@@ -217,7 +219,7 @@ const game = {
 
     //** Sets Button styles based on correct or wrong answer **//
     const setButtonAnswerStyles = (result, playerAnswer, correctAnswer) => {
-      $(".answer-btn").attr("disabled", "true");
+      $(".question-answer-btn").attr("disabled", "true");
    
       if(result){
         $(`[data-answer='${playerAnswer}']`).css("background-color", "green");

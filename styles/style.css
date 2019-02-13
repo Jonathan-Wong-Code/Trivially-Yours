@@ -136,7 +136,7 @@ html {
   font-size: 125%; }
 
 body {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   letter-spacing: 10px;
   font-family: "Bangers", sans-serif;
   background-image: url("./../images/background.png");
@@ -168,4 +168,62 @@ img {
     background: -webkit-linear-gradient(330deg, rgba(0, 0, 0, 0.8) 50%, rgba(91, 50, 86, 0.8));
     background: -o-linear-gradient(330deg, rgba(0, 0, 0, 0.8) 50%, rgba(91, 50, 86, 0.8));
     background: linear-gradient(120deg, rgba(0, 0, 0, 0.8) 50%, rgba(91, 50, 86, 0.8));
-    padding: 2rem 2rem; }
+    padding: 1rem 0rem; }
+
+.setup {
+  padding: 2.5rem 0rem; }
+  .setup-form {
+    border: 10px solid #fff;
+    margin: 50px;
+    width: 60%;
+    padding: 1rem;
+    text-align: center;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); }
+  .setup-name {
+    text-align: center;
+    width: 75%;
+    font-size: 1.5rem;
+    padding: .5rem;
+    border-radius: 10px;
+    letter-spacing: 5px; }
+    .setup-name:focus {
+      outline: 4px solid #fff;
+      background-color: #f2f2f2; }
+  .setup-number-questions, .setup-difficulty, .setup-categories {
+    padding: .5rem;
+    text-align: center;
+    font-size: 1.5rem; }
+    .setup-number-questions:focus, .setup-difficulty:focus, .setup-categories:focus {
+      outline: 5px solid #fff;
+      background-color: #f2f2f2; }
+  .setup-button {
+    background: none;
+    margin: 1rem 0;
+    color: currentColor;
+    padding: 1rem 2rem;
+    border: 5px solid #fff;
+    border-radius: 10px;
+    -webkit-transition: background-color .3s, -webkit-transform .3s;
+    transition: background-color .3s, -webkit-transform .3s;
+    -o-transition: transform .3s, background-color .3s;
+    transition: transform .3s, background-color .3s;
+    transition: transform .3s, background-color .3s, -webkit-transform .3s; }
+    .setup-button:hover, .setup-button:focus {
+      -webkit-transform: translateY(-3px);
+      -ms-transform: translateY(-3px);
+      transform: translateY(-3px);
+      background-color: rgba(91, 50, 86, 0.5); }
+  .setup-label {
+    font-size: 1.5rem;
+    margin: .8rem 0; }

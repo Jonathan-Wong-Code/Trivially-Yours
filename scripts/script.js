@@ -100,7 +100,7 @@ const game = {
     }
     //Event Listeners
 
-    // $(".setup-form-new").on("submit", (e)=>{
+    // $(".setup-form").on("submit", (e)=>{
     //   e.preventDefault();
     //   setupGameControl(e);
     // });  
@@ -268,9 +268,9 @@ const game = {
 
     const renderSetup = () => {
       const markup = `
-        <section class="setup-new">
+        <section class="setup">
           <div class="wrapper">
-            <form action="" class="setup-form-new">
+            <form action="" class="setup-form">
               <label class="setup-label" for="setup-name">
                 Name
               </label>
@@ -286,7 +286,7 @@ const game = {
                 <option value="20">20</option>
               </select>
 
-              <label for="setup-new-difficulty" class="setup-label">
+              <label for="setup-difficulty" class="setup-label">
                 Difficulty
               </label>
               <select name="difficulty" id="setup-difficulty" class="setup-difficulty">
@@ -306,7 +306,7 @@ const game = {
                 <option value="18">Computers</option>
                 <option value="14">Television</option>
               </select>
-              <button class="setup-button">Start Game!</button>
+              <button class="setup-button btn">Start Game!</button>
             </form>
           </div>
         </section>

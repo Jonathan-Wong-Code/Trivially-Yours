@@ -54,13 +54,7 @@
       margin:0 auto;
     }
     form{
-      border:1px solid black;
-      margin:50px;
-      text-align: center;
-      margin:auto;
-      display:flex;
-      flex-direction: column;
-      align-items:center;
+     
      
     }
    
@@ -77,17 +71,16 @@
     <h1 class="header-heading">Trivially Yours</h1>
   </header>
   <main class="game-area">
-    <section class="setup-new">
+    <section class="setup">
       <div class="wrapper">
-          <form action="" class="setup-form-new">
-  
+          <form action="" class="setup-form">
             <label class="setup-label" for="setup-name">
               Name
             </label>
             <input type="text" class="setup-name" name="name" id="setup-name">
           
             <label for="setup-number-questions" class="setup-label">
-              Choose number of questions!
+              Number of Questions
             </label>
             <select name="questions" id="setup-number-questions" class="setup-number-questions">
               <option value="5">5</option>
@@ -96,7 +89,7 @@
               <option value="20">20</option>
             </select>
 
-            <label for="setup-new-difficulty" class="setup-label">
+            <label for="setup-difficulty" class="setup-label">
               Difficulty
             </label>
             <select name="difficulty" id="setup-difficulty" class="setup-difficulty">
@@ -116,9 +109,8 @@
               <option value="18">Computers</option>
               <option value="14">Television</option>
             </select>
-            <button class="setup-button">Start Game!</button>
+            <button class="setup-button btn">Start Game!</button>
           </form>
-
       </div>
     </section>
 

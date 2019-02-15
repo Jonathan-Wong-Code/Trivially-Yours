@@ -1,0 +1,23 @@
+.game-over {
+  padding:2rem 0;
+  &-heading{
+    margin:0;
+  }
+
+  &-img-box{
+    width:50%;
+    margin:0 auto;
+  }
+  &-wrapper {
+    padding:2rem 0;
+    display:grid;
+    justify-content: center;
+    text-align: center;
+    border:5px solid #fff;
+    background:rgba(0,0,0,.5);
+  }
+
+  &-stats {
+    margin:1rem 0 1rem 0;
+  }
+}

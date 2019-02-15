@@ -3,7 +3,7 @@
   
   &-content{
     border:5px solid $color-white;
-    padding:2rem 3rem;
+    padding:2rem;
     text-align: center;
     background-color: rgba($color-black,.5);
   } 
@@ -16,6 +16,13 @@
 
   &-heading{
     text-decoration: underline;
+    margin:0;
+  }
+
+  &-box{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
   }
 
   &-player-name {
@@ -40,17 +47,34 @@
     height:100%;
   }
 
-  &-answer-btn {
-    width:100%;
-    text-align:left;
-    height:100%;
-  }
-
   &-list-item {
     &:not(:last-child){
       margin-bottom:.5rem;
     }
   }
+
+  &-answer-btn {
+    width:100%;
+    text-align:left;
+    height:100%;
+    display:grid;
+    grid-template-columns:min-content 1fr;
+    grid-column-gap:10px;
+    grid-row-gap:5px;
+    line-height:1.2;
+    align-items: center;
+  }
+
+  &-num {
+    // transform:translateY(-19px);\
+    align-self:center;
+  }
+
+  &-answer {
+    margin:0;
+  }
+
+ 
 
   &-next {
     margin-top:1rem;

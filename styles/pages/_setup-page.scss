@@ -2,12 +2,14 @@
   padding: 2rem 0rem; 
 
   &-form {
-    border:10px solid $color-white;
-    margin:50px;
     width:60%;
-    padding:1rem;
-    text-align: center;
     margin:auto;
+
+    border:10px solid $color-white;
+    padding:1rem;
+
+    text-align: center;
+
     display:flex;
     flex-direction: column;
     align-items:center;
@@ -22,16 +24,18 @@
   &-difficulty, 
   &-categories, 
   &-name {
-    padding:.5rem;
-    text-align: center;
-    font-size:1.4rem;
+    font-size: 1.4rem;
     font-family: $font-secondary;
-    letter-spacing:2px;
+    letter-spacing: 2px;
+    text-align: center;
+
+    padding: .5rem;
     border-radius:10px;
 
-    &:focus{
+    &:focus {
+      color:white;
       outline:5px solid $color-white;
-      background-color:darken($color-white,5);
+      background-color: lighten($color-primary-light,20);
     }
   }
 

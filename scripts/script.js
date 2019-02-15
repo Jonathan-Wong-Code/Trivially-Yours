@@ -71,7 +71,9 @@ const game = {
 
     guessAnswer(playerGuess, question) {
       const answerIndex = question.allAnswers.indexOf(question.correctAnswer);
+      
       playerGuess = parseInt(playerGuess,10);
+
       if (playerGuess === answerIndex) {
         this.correctAnswers += 1;
         return true;
@@ -82,41 +84,44 @@ const game = {
   }
 
   $(function() {
-    const state = {};
     const gameArea = $(".game-area");
     
     //******* CONTROLLER LOGIC *******//
-
     //Click on start game logic.
     const setupGameControl = async () => {
       const playerName = $(".setup-name").val();
       const difficulty = $(".setup-difficulty").val();
       const category = $(".setup-categories").val();
       const numQuestions = $(".setup-number-questions").val(); 
-      
-      try {
-        await game.startNewGame(category, difficulty, numQuestions);//Initialize new game.
-        game.totalQuestions = game.questions.length;    
-        state.question = game.getQuestion();
-  
-        renderGame(
-          state.question, 
-          playerName, 
-          game.totalQuestions, 
-          game.currentQuestionNumber
-        );
-      } catch(error){
-        throw error;
-      }
+
+      if(playerName) {
+        try {
+          await game.startNewGame(category, difficulty, numQuestions);//Initialize new game.
+          game.totalQuestions = game.questions.length;    
+          game.question = game.getQuestion();
+    
+          renderGame(
+            game.question, 
+            playerName, 
+            game.totalQuestions, 
+            game.currentQuestionNumber
+          );
+        } catch(error){
+          throw error;
+        }
+      } else {
+        alert("Enter a name!");
+        $(".setup-button").attr("disabled", false);
+      }    
     }
 
     // Click on an answer logic
-    const answerQuestionControl = (e) =>{
+    const answerQuestionControl = (e) => {
       const button = e.target.closest(".question-answer-btn");
       const answer = button.dataset.answer;
-      const result = game.guessAnswer(answer, state.question);
+      const result = game.guessAnswer(answer, game.question);
       const correctAnswerIndex = 
-        state.question.allAnswers.indexOf(state.question.correctAnswer);
+        game.question.allAnswers.indexOf(game.question.correctAnswer);
 
       updateScore(game.correctAnswers);
       setButtonAnswerStyles(result, answer, correctAnswerIndex);
@@ -133,9 +138,9 @@ const game = {
     //Click next question logic
     const nextQuestionControl = () => {
       if(game.questions.length > 0) { //If game isn't over. Display next question
-        state.question = game.getQuestion();
+        game.question = game.getQuestion();
         updateQuestionNumber(game.currentQuestionNumber, game.totalQuestions);
-        renderNewQuestion(state.question);
+        renderNewQuestion(game.question);
       } else { //Game is over. Render game-over page on click.
         game.totalQuestions = parseInt(game.totalQuestions,10);
         const correctAnswerPerc = (game.correctAnswers/game.totalQuestions)*100;
@@ -146,26 +151,26 @@ const game = {
     //Event Listeners  
     gameArea.on("click", (e) => {
       e.preventDefault();
-
+      console.log(e.target);
       //Click on an answer
-      if(e.target.matches(".question-answer-btn")) {   
+      if(e.target.matches(".question-answer-btn, .question-answer-btn *")) {   
         answerQuestionControl(e);
        
         //When we click on "Next Question"
-        $(".question-next").on("click", () =>{
+        $(".question-next").on("click", () => {
           toggleQuestionNext();
           nextQuestionControl();      
         });   
       }
 
       //Click play again button. Render setup
-      if(e.target.matches(".play-again-button")) {;
+      if(e.target.matches(".game-over-button")) {;
         renderSetup();
       }
    
       //Click on start game
       if(e.target.matches(".setup-button")) {
-        $(".setup-button").attr("disabled", "true");
+        $(".setup-button").attr("disabled", true);
         setupGameControl();
       }
     });
@@ -174,11 +179,12 @@ const game = {
 
     //Creates each Answer button.
     const createAnswer = (answer, index) =>`
-      <li class="question-list-item">
-        <button class="question-answer-btn btn" data-answer='${index}'>
-          ${index+1}. ${answer}
-        </button>
-      </li>
+    <li class="question-list-item">
+      <button class="question-answer-btn btn" data-answer='${index}'>
+        <span class="question-num">${index + 1}.</span> 
+        <p class="question-answer">${answer}</p>
+      </button>
+    </li>
     `;
 
     //Renders Initial Game "board" start.
@@ -243,7 +249,7 @@ const game = {
 
     //** Sets Button styles based on correct or wrong answer **//
     const setButtonAnswerStyles = (result, playerAnswer, correctAnswer) => {
-      $(".question-answer-btn").attr("disabled", "true");
+      $(".question-answer-btn").attr("disabled", true);
    
       if(result) {
         $(`[data-answer='${playerAnswer}']`).css("background-color", "green");
@@ -272,38 +278,38 @@ const game = {
       }
 
       const markup = `
-        <section class="play-again">
-          <div class="play-again-top-text">
-            <h2 class="play-again-heading">Game Over!</h2>
-            <p class="play-again-stats">You got ${correctAnswers} out of ${totalQuestions}</p>
+        <section class="game-over">
+          <div class="wrapper game-over-wrapper"> 
+            <div class="game-over-top">
+              <h2 class="game-over-heading">Game Over!</h2>
+              <p class="game-over-stats">You got ${correctAnswers} out of ${totalQuestions}</p>
+            </div>
+            <div class="game-over-img-box">
+              <img src=${imagePath} alt=${altText} class="game-over-img">
+            </div>
+            <div class="game-over-bottom">
+              <p class="game-over-message">${scoreMessage}</p>
+              <button class="game-over-button btn"> Play Again </button>
+            </div>
           </div>
-          <div class="play-again-img-box">
-            <img src=${imagePath} alt=${altText} class="play-again-img">
-          </div>
-          <div class="play-again-bottom">
-            <p class="play-again-message">${scoreMessage}</p>
-            <button class="play-again-button btn"> Play Again </button>
-          </div>
-
         </section>
       `;
       gameArea.html(markup);  
     }
 
     //*RENDERS NEW GAME SCREEN*//
-
     const renderSetup = () => {
       const markup = `
         <section class="setup">
           <div class="wrapper">
             <form action="" class="setup-form">
               <label class="setup-label" for="setup-name">
-                Name
+                Enter Name
               </label>
               <input type="text" class="setup-name" name="name" id="setup-name">
               
               <label for="setup-number-questions" class="setup-label">
-                Choose number of questions!
+                Number of Questions
               </label>
               <select name="questions" id="setup-number-questions" class="setup-number-questions">
                 <option value="5">5</option>
@@ -340,3 +346,6 @@ const game = {
       gameArea.html(markup);
     }    
   });
+
+  //Question about backticks when needed w/ double quotes
+  //Axios?

@@ -9,44 +9,10 @@
   <title>Trivially Yours</title>
   <style>
 
-    .question-header{
-      text-align: center;
-    }
-    button{
-      display:block;
-    }
-
-    .hidden{
-      display:none;
-    }
-
-    .show{
-      display:block;
-    }
-
-    .question-box{
-      display:flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    h2{
-      margin:0;
-    }
-
-
-    button{
-      display:block;
-      margin:0 auto;
-    }
-    
    
-    .game-area{
-      display:flex;
-      flex-direction: column; 
-    }
-   
+
+
+
   </style>
 </head>
 <body>
@@ -96,68 +62,10 @@
           </form>
       </div>
     </section>
-
-     <section class="question">
-          <div class="wrapper">
-            <div class="question-content">
-              <div class="question-header">
-                <h2 class="question-count question-heading">Question ${currentQuestionNum}/${totalQuestionNum}</h2>
-                <h2 class="question-correct-answers question-heading">Correct Answers: 0</h2>
-                <p class="question-player-name">Player: ${playerName}</p>
-              </div>
-              
-              <div class="question-box">
-                <h3 class="question-question">${question.question}</h3>
-                <ul class="question-answers">
-                  <li class="question-list-item">
-                    <button class="question-answer-btn" data-answer='${index}'>
-                      A big fat apple pie sandwich happening on the beach
-                    </button>
-                  </li>
-
-                  <li class="question-list-item">
-                    <button class="question-answer-btn" data-answer='${index}'>
-                      A tuna sandwich
-                    </button>
-                  </li>
-
-                  <li class="question-list-item">
-                    <button class="question-answer-btn" data-answer='${index}'>
-                      A baseball bat sitting on a trunk
-                    </button>
-                  </li>
-
-                  <li class="question-list-item">
-                    <button class="question-answer-btn" data-answer='${index}'>
-                      Yummy yummy cherry tomato time
-                    </button>
-                  </li>
-                </ul>
-                <button class="question-next hidden">Next Question</button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-      <section class="play-again">
-        <div class="wrapper">
-          <div class="play-again-top">
-            <h2 class="play-again-heading">Game Over!</h2>
-            <p class="play-again-stats">You got 5 out of 10</p>
-          </div>
-          <div class="play-again-img-box">
-            <img src="images/smiley.jpg" alt="Smiley emoji" class="play-again-img">
-          </div>
-          <div class="play-again-bottom">
-            <p class="play-again-message">You got over half right! </p>
-            <button class="play-again-button"> Play Again </button>
-          </div>
-        </div>
-      </section>
-     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
-    <script src="scripts/script.js"></script>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+  <script src="scripts/script.js"></script>
 </body>
 </html>
 

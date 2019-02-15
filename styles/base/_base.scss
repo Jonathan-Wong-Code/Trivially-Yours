@@ -4,12 +4,13 @@ html {
 
 body {
   font-size:1.5rem;
-  letter-spacing: 10px;
-  font-family: "Bangers", sans-serif;
+  letter-spacing: 5px;
+  font-family: $font-primary;
   background-image: url("./../images/background.png");
   color:$color-white;
-  line-height:1.5;
+  line-height:1.6;
 }
+
 .wrapper{
   max-width:1280px;
   margin:0 auto;
@@ -25,4 +26,29 @@ img {
   width:100%;
   height:100%;
   display:block;
+}
+
+.btn {
+  display:block;
+  background:none;
+  padding:.5rem 1rem;
+  color:currentColor;
+  border:5px solid $color-white;
+  border-radius:10px;
+  transition: transform .3s, background-color .3s;
+
+  &:hover, &:focus {
+    transform: translateY(-3px);
+    background-color:rgba($color-primary, .5);
+  }
+
+  &:disabled {
+    background: $color-primary;
+    color: darken($color-white,20);
+
+    &:hover, &:focus {
+      transform: none;
+      background-color:$color-primary;
+    }
+  }
 }

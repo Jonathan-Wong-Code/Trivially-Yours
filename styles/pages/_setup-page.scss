@@ -1,5 +1,5 @@
 .setup {
-  padding: 2.5rem 0rem; 
+  padding: 2rem 0rem; 
 
   &-form {
     border:10px solid $color-white;
@@ -12,30 +12,22 @@
     flex-direction: column;
     align-items:center;
     background-color: rgba($color-black,.5);
-
-    // &:focus-within{
-    //   background-color: rgba($color-primary,.5);
-    // }
   }
 
   &-name {
-    text-align: center;
     width:75%;
-    font-size:1.5rem;
-    padding:.5rem;
-    border-radius:10px;
-    letter-spacing:5px;
-
-    &:focus{
-      outline:4px solid $color-white;
-      background-color:darken($color-white,5);
-    }
   }
 
-  &-number-questions, &-difficulty, &-categories{
+  &-number-questions, 
+  &-difficulty, 
+  &-categories, 
+  &-name {
     padding:.5rem;
     text-align: center;
-    font-size:1.5rem;
+    font-size:1.4rem;
+    font-family: $font-secondary;
+    letter-spacing:2px;
+    border-radius:10px;
 
     &:focus{
       outline:5px solid $color-white;
@@ -44,23 +36,9 @@
   }
 
   &-button {
-    background:none;
-    margin: 1rem 0;
-    color:currentColor;
-    padding:1rem 2rem;
-    border:5px solid $color-white;
-    border-radius:10px;
-    transition: transform .3s, background-color .3s;
-  
-
-    &:hover, &:focus {
-      transform: translateY(-3px);
-      background-color:rgba($color-primary, .5);
-    }
+    margin: 1rem 0; 
   }
-
   
-
   &-label{
     font-size:1.5rem;
     margin:.8rem 0;

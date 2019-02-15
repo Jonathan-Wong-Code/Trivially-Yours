@@ -1,39 +1,52 @@
+//**** DATA LOGIC *****//
 const game = {
      questions : [],
      totalQuestions : 0,
      correctAnswers : 0,
      currentQuestionNumber : 0,
 
-    async startNewGame(category, difficulty,numQuestions) {
-
+    async startNewGame(category, difficulty, numQuestions) {
       this.resetStats();
 
-      const response = await axios.get(`https://opentdb.com/api.php?amount=${numQuestions}&category=${category}&difficulty=${difficulty}`);
-      const data = response.data.results;
-      
-      data.forEach((question => {
-        this.questions.push({
-          question : question.question,
-          correctAnswer : question.correct_answer,
-          incorrectAnswers : question.incorrect_answers,
-          allAnswers : [question.correct_answer, ...question.incorrect_answers]
-        });
-      }));
+      try {
+        // const response = await axios.get(`https://opentdb.com/api.php?amount=${numQuestions}&category=${category}&difficulty=${difficulty}`);
 
-      this.shuffleAnswers();
-      
+        const response = await axios.get("https://opentdb.com/api.php", {
+          params : {
+            amount : numQuestions,
+            category,
+            difficulty
+          }
+        });
+
+        const data = response.data.results;
+        
+        data.forEach(question => {
+          this.questions.push({
+            question : question.question,
+            correctAnswer : question.correct_answer,
+            incorrectAnswers : question.incorrect_answers,
+            allAnswers : [question.correct_answer, ...question.incorrect_answers]
+          });
+        });
+      } catch (error) {
+        throw error;
+      }
+    
+      this.shuffleAnswers();  
     },
 
     resetStats() {
       this.questions = [];   
       this.correctAnswers = 0;
-      this.currentQuestionNumber =0;
+      this.currentQuestionNumber = 0;
+      this.totalQuestions = 0;
     },
 
   //https://medium.com/@fyoiza/how-to-randomize-an-array-in-javascript-8505942e452 
   //Shuffle Algorthim
     shuffleAnswers() {
-      this.questions.forEach((question) => {
+      this.questions.forEach(question => {
         let shuffledAnswers = [];
   
         while(question.allAnswers.length !== 0) {
@@ -51,17 +64,16 @@ const game = {
       const returnedQuestion = this.questions[randomNum];
 
       this.questions.splice(randomNum, 1);  
-      this.currentQuestionNumber +=1;
+      this.currentQuestionNumber += 1;
      
       return returnedQuestion;
     },
 
     guessAnswer(playerGuess, question) {
-      //We have to use index instead of text value due to ' and special characters in API.
       const answerIndex = question.allAnswers.indexOf(question.correctAnswer);
       playerGuess = parseInt(playerGuess,10);
-      if(playerGuess === answerIndex) {
-        this.correctAnswers +=1;
+      if (playerGuess === answerIndex) {
+        this.correctAnswers += 1;
         return true;
       } else {      
         return false;
@@ -72,90 +84,98 @@ const game = {
   $(function() {
     const state = {};
     const gameArea = $(".game-area");
-  
+    
+    //******* CONTROLLER LOGIC *******//
+
+    //Click on start game logic.
     const setupGameControl = async () => {
       const playerName = $(".setup-name").val();
       const difficulty = $(".setup-difficulty").val();
       const category = $(".setup-categories").val();
       const numQuestions = $(".setup-number-questions").val(); 
-     
-      await game.startNewGame(category, difficulty, numQuestions);
-     
-      game.totalQuestions = game.questions.length;    
-      state.question = game.getQuestion();
-    
-      renderGame(
-        state.question, 
-        playerName, 
-        game.totalQuestions, 
-        game.currentQuestionNumber
-      );
-      // $(".question-answer-btn").on("click", function(){
-      //   console.log(this);
-      //   clearQuestionArea();
-      //   state.question = game.getQuestion();
-      //   renderNewQuestion(state.question);
-      //   console.log("logged");
-      // });
+      
+      try {
+        await game.startNewGame(category, difficulty, numQuestions);//Initialize new game.
+        game.totalQuestions = game.questions.length;    
+        state.question = game.getQuestion();
+  
+        renderGame(
+          state.question, 
+          playerName, 
+          game.totalQuestions, 
+          game.currentQuestionNumber
+        );
+      } catch(error){
+        throw error;
+      }
     }
-    //Event Listeners
 
-    // $(".setup-form").on("submit", (e)=>{
-    //   e.preventDefault();
-    //   setupGameControl(e);
-    // });  
-    gameArea.on("click", (e) =>{
+    // Click on an answer logic
+    const answerQuestionControl = (e) =>{
+      const button = e.target.closest(".question-answer-btn");
+      const answer = button.dataset.answer;
+      const result = game.guessAnswer(answer, state.question);
+      const correctAnswerIndex = 
+        state.question.allAnswers.indexOf(state.question.correctAnswer);
+
+      updateScore(game.correctAnswers);
+      setButtonAnswerStyles(result, answer, correctAnswerIndex);
+      
+      //If game over!
+      if(game.questions.length === 0) {
+        renderGameOverText();
+        updateViewScoreBtn();
+      }
+     
+      toggleQuestionNext();
+    }
+
+    //Click next question logic
+    const nextQuestionControl = () => {
+      if(game.questions.length > 0) { //If game isn't over. Display next question
+        state.question = game.getQuestion();
+        updateQuestionNumber(game.currentQuestionNumber, game.totalQuestions);
+        renderNewQuestion(state.question);
+      } else { //Game is over. Render game-over page on click.
+        game.totalQuestions = parseInt(game.totalQuestions,10);
+        const correctAnswerPerc = (game.correctAnswers/game.totalQuestions)*100;
+        renderGameOver(game.correctAnswers, game.totalQuestions, correctAnswerPerc);
+      }
+    }
+
+    //Event Listeners  
+    gameArea.on("click", (e) => {
       e.preventDefault();
 
-      if(e.target.matches(".question-answer-btn")) {
-        const button = e.target.closest(".question-answer-btn");
-        const answer = button.dataset.answer;
-        const result = game.guessAnswer(answer, state.question);
-        const showNextQuestionBtn =  $(".question-next");
-        const correctAnswerIndex = 
-          state.question.allAnswers.indexOf(state.question.correctAnswer);
-
-        updateScore(game.correctAnswers);
-        setButtonAnswerStyles(result, answer, correctAnswerIndex);
-        
-        if(game.questions.length === 0) {
-          renderGameOverText();
-          updateViewScoreBtn();
-        }
-        //Show next question button
-        showNextQuestionBtn.toggleClass("hidden");
-        
+      //Click on an answer
+      if(e.target.matches(".question-answer-btn")) {   
+        answerQuestionControl(e);
+       
         //When we click on "Next Question"
-        showNextQuestionBtn.on("click", () =>{
-          showNextQuestionBtn.toggleClass("hidden");
-     
-          if(game.questions.length > 0) {
-            state.question = game.getQuestion();
-            updateQuestionNumber(game.currentQuestionNumber, game.totalQuestions);
-            renderNewQuestion(state.question);
-          } else {
-            game.totalQuestions = parseInt(game.totalQuestions,10);
-            const correctAnswerPerc = (game.correctAnswers/game.totalQuestions)*100;
-            renderPlayAgain(game.correctAnswers, game.totalQuestions, correctAnswerPerc);
-          }  
+        $(".question-next").on("click", () =>{
+          toggleQuestionNext();
+          nextQuestionControl();      
         });   
       }
 
+      //Click play again button. Render setup
       if(e.target.matches(".play-again-button")) {;
         renderSetup();
       }
    
+      //Click on start game
       if(e.target.matches(".setup-button")) {
+        $(".setup-button").attr("disabled", "true");
         setupGameControl();
       }
     });
 
-    //******** View Logic ********//
+    //******** VIEW LOGIC ********//
 
-    //Creates each Answer button from question mapping.
+    //Creates each Answer button.
     const createAnswer = (answer, index) =>`
       <li class="question-list-item">
-        <button class="question-answer-btn" data-answer='${index}'>
+        <button class="question-answer-btn btn" data-answer='${index}'>
           ${index+1}. ${answer}
         </button>
       </li>
@@ -170,7 +190,7 @@ const game = {
               <div class="question-header">
                 <h2 class="question-count question-heading">Question ${currentQuestionNum}/${totalQuestionNum}</h2>
                 <h2 class="question-correct-answers question-heading">Correct Answers: 0</h2>
-                <p class="question-player-name">Player: ${playerName}!</p>
+                <p class="question-player-name">Player: ${playerName}</p>
               </div>
               
               <div class="question-box">
@@ -179,7 +199,7 @@ const game = {
                 ${question.allAnswers
                   .map((answer, index) => createAnswer(answer,index)).join('')} 
                 </ul>
-                <button class="question-next hidden">Next Question</button>
+                <button class="question-next hidden btn">Next Question</button>
               </div>
             </div>
           </div>
@@ -192,11 +212,11 @@ const game = {
     const renderNewQuestion = (question) => {
       const markup= `
         <h3 class="question-question">${question.question}</h3>
-        <ul class="level-question-answers">
+        <ul class="question-answers">
           ${question.allAnswers
            .map((answer, index) => createAnswer(answer,index)).join('')} 
         </ul>
-        <button class="question-next hidden">Next Question</button>  
+        <button class="question-next hidden btn">Next Question</button>  
       `; 
       $(".question-box").html(markup);
     }
@@ -205,11 +225,15 @@ const game = {
       $(".question-correct-answers").text(`Correct Answers:${correctAnswers}`);
     }
 
-    const updateQuestionNumber = (currentQuestionNum,totalQuestionNum) =>{
+    const updateQuestionNumber = (currentQuestionNum, totalQuestionNum) => {
       $(".question-count").text(`Question ${currentQuestionNum}/${totalQuestionNum}`);
     }
 
-    const updateViewScoreBtn = () =>{
+    const toggleQuestionNext = () => {
+      $(".question-next").toggleClass("hidden");
+    }
+
+    const updateViewScoreBtn = () => {
       $(".question-next").text("View score!");
     }
 
@@ -221,7 +245,7 @@ const game = {
     const setButtonAnswerStyles = (result, playerAnswer, correctAnswer) => {
       $(".question-answer-btn").attr("disabled", "true");
    
-      if(result){
+      if(result) {
         $(`[data-answer='${playerAnswer}']`).css("background-color", "green");
       } else {
         $(`[data-answer='${correctAnswer}']`).css("background-color", "green");
@@ -229,11 +253,11 @@ const game = {
       }
     }
 
-    //**RENDERS PLAY AGAIN SCREEN **//
-    const renderPlayAgain = (correctAnswers, totalQuestions, correctAnswersPerc) => {
+    //**Renders Game Over Screen **//
+    const renderGameOver = (correctAnswers, totalQuestions, correctAnswersPerc) => {
       let imagePath, altText, scoreMessage;
 
-      if(correctAnswersPerc === 100) {
+      if (correctAnswersPerc === 100) {
         imagePath = "images/mexican-adam.gif";
         altText = "A picture of a young white male with a mexican hat";
         scoreMessage = "Wow you got a perfect score!";
@@ -257,8 +281,8 @@ const game = {
             <img src=${imagePath} alt=${altText} class="play-again-img">
           </div>
           <div class="play-again-bottom">
-            <p class="play-again-message">${scoreMessage} </p>
-            <button class="play-again-button"> Play Again </button>
+            <p class="play-again-message">${scoreMessage}</p>
+            <button class="play-again-button btn"> Play Again </button>
           </div>
 
         </section>
@@ -316,5 +340,3 @@ const game = {
       gameArea.html(markup);
     }    
   });
-  
-

@@ -1,35 +1,124 @@
 .question {
-  padding: 2rem 0;
-  
+  padding: 2% 0;
+
+  @include respond(large) {
+    padding: 2rem;
+  }
+
+  @include respond(medium2) {
+    padding: 0;
+    height:100vh;
+  }
+
+  &-wrapper {
+    @include respond(medium2) {
+      height:100%;
+      display:flex;
+    }
+  }
+ 
   &-content {
     text-align: center;
     border: 5px solid $color-white;
-    padding: 2rem;
+    padding: 1.5rem;
     background-color: rgba($color-black,.5);
+
+    @include respond(medium2) {    
+      height:100%;
+      padding:2rem;   
+      width:100%;
+    }
   } 
 
   &-header { 
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    margin: 0 auto;
+    @include respond(medium) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include respond(medium2) {
+      align-self: start;
+      margin-top:1rem;
+    }
+
+    @include respond(small) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &-heading {
     text-decoration: underline;
     margin: 0;
+
+    @include respond(medium) {
+      font-size:2rem;
+      text-decoration: none;
+    }
+
+    @include respond(medium2) {
+      font-size:1.8rem;
+    }
+
+    @include respond(medium3) {
+      font-size:1.5rem;
+    }
+  }
+
+  &-mobile-heading {
+    margin:0;
+  }
+
+  &-count {
+    @include respond(medium){
+      justify-self: start;
+    }
+
+    @include respond(medium2) {
+      justify-self: center;
+    }
+  }
+
+  &-correct-answers {
+    @include respond(medium){
+      justify-self: end;
+    }
+
+    @include respond(medium2) {
+      justify-self: center;
+    }
   }
 
   &-box{
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top:1.5%;
   }
 
   &-player-name {
-    grid-column: 1/-1;
     font-size: 2.25rem;
+    grid-column: 1/-1;
+    
     margin: 1rem 0 0 0;
+
+    @include respond(medium) {
+      font-size:1.8rem;
+    }
+
+    @include respond(medium2) {
+      margin-left:1rem;
+      grid-column: 1/-1;
+    }
+
+    @include respond(medium3) {
+      font-size:1.5rem;
+    }
+
+    @include respond(small) {
+      margin:0;
+    }
   }
 
   &-question {
@@ -37,12 +126,38 @@
     font-family: "Open Sans", sans-serif;
     letter-spacing: 1px;
     margin: 1rem 0;
+
+    @include respond(large){
+      font-size: 1.6rem;
+    }
+
+    @include respond(medium2) {
+      margin:.5rem 0;
+      font-size:1.3rem;
+      margin-top:5%;
+      margin-bottom:5%;
+    }
+
+    @include respond(small) {
+      margin:3% 0;
+    }
+    
+
+    @include respond(medium3) {
+      // font-size:1.1rem;
+    }
   }
 
   &-answers {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1.5rem;
+    margin-top:1rem;
+
+    @include respond(medium2) {
+      grid-template-columns: 1fr;
+      grid-gap:1rem;
+    }
   }
 
   &-list-item {
@@ -52,6 +167,10 @@
   &-list-item {
     &:not(:last-child){
       margin-bottom: .5rem;
+
+      @include respond(medium2) {
+        margin:0;
+      }
     }
   }
 
@@ -66,6 +185,16 @@
     grid-column-gap: 10px;
     grid-row-gap: 5px;
     align-items: center;
+
+    @include respond(medium) {
+      font-size:1.3rem;
+      padding:.5rem 1rem;
+      height:auto;
+    }
+
+    @include respond(medium3) {
+      font-size:1.1rem;
+    }
   }
 
   &-num {
@@ -77,6 +206,15 @@
   }
 
   &-next {
-    margin-top: 1rem;
+    margin-top: 2rem;
+    
+    @include respond(medium2) {
+      margin-top:1rem;
+      font-size:1.3rem;
+    }
+
+    @include respond(small) {
+      font-size:1.1rem;
+    }
   }
 }

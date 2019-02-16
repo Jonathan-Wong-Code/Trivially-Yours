@@ -10,11 +10,19 @@ body {
 
   background-image: url("./../images/background.png");
   color: $color-white;
+
+  @include respond(medium2) {
+    font-size:1.4rem;
+  }
 }
 
 .wrapper{
   max-width: 1280px;
   margin: 0 auto;
+}
+
+.game-area {
+  padding: 1px;
 }
 
 ul {

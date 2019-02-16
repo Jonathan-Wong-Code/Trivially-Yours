@@ -6,7 +6,19 @@
     letter-spacing: 20px;
     margin: 0;
     padding: .5rem 0rem;
-
     background: linear-gradient(120deg, rgba($color-black,.8) 50%, rgba($color-primary,.8));
+
+    @include respond(large) {
+      font-size:3.5rem;
+    }
+
+    @include respond(medium) {
+      font-size:3rem;
+      padding: 0;
+    }
+
+    @include respond(medium2) {
+      font-size:2.5rem;
+    }
   }
 }

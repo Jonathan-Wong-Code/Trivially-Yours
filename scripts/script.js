@@ -91,19 +91,22 @@
       const difficulty = $(".setup-difficulty").val();
       const category = $(".setup-categories").val();
       const numQuestions = $(".setup-number-questions").val(); 
-
+      console.log("test");
       if(playerName) {
         try {
           await game.startNewGame(category, difficulty, numQuestions);//Initialize new game.
           game.totalQuestions = game.questions.length;    
           game.question = game.getQuestion();
-    
+          
+          toggleHideHeader();
+          
           renderGame(
             game.question, 
             playerName, 
             game.totalQuestions, 
             game.currentQuestionNumber
           );
+          showMobileHeading();
         } catch(error){
           throw error;
         }
@@ -135,7 +138,7 @@
 
     //Click next question logic
     const nextQuestionControl = () => {
-      if(game.questions.length > 0) { //If game isn't over. Display next question
+      if(game.questions.length > 0) { //If game isn"t over. Display next question
         game.question = game.getQuestion();
         updateQuestionNumber(game.currentQuestionNumber, game.totalQuestions);
         renderNewQuestion(game.question);
@@ -143,6 +146,7 @@
         game.totalQuestions = parseInt(game.totalQuestions,10);
         const correctAnswerPerc = (game.correctAnswers/game.totalQuestions)*100;
         renderGameOver(game.correctAnswers, game.totalQuestions, correctAnswerPerc);
+        toggleHideHeader();
       }
     }
 
@@ -189,9 +193,11 @@
     const renderGame = (question, playerName, totalQuestionNum, currentQuestionNum) => {
       const markup = `
         <section class="question">
-          <div class="wrapper">
+          <div class="wrapper question-wrapper">
             <div class="question-content">
+            <h2 class="question-mobile-heading"></h2>
               <div class="question-header">
+                
                 <h2 class="question-count question-heading">Question ${currentQuestionNum}/${totalQuestionNum}</h2>
                 <h2 class="question-correct-answers question-heading">Correct Answers: 0</h2>
                 <p class="question-player-name">Player: ${playerName}</p>
@@ -237,6 +243,18 @@
       $(".question-next").toggleClass("hidden");
     }
 
+    const toggleHideHeader = () => {
+      if ($(window).width() < 900) {
+        $(".header").toggleClass("hidden"); 
+      }
+    }
+
+    const showMobileHeading = () => {
+      if ($(window).width() < 900) {
+        $(".question-mobile-heading").text("Trivially Yours"); 
+      }   
+    }
+
     const updateViewScoreBtn = () => {
       $(".question-next").text("View score!");
     }
@@ -250,10 +268,10 @@
       $(".question-answer-btn").attr("disabled", true);
    
       if(result) {
-        $(`[data-answer='${playerAnswer}']`).css("background-color", "green");
+        $(`[data-answer="${playerAnswer}"]`).css("background-color", "green");
       } else {
-        $(`[data-answer='${correctAnswer}']`).css("background-color", "green");
-        $(`[data-answer='${playerAnswer}']`).css("background-color", "red");
+        $(`[data-answer="${correctAnswer}"]`).css("background-color", "green");
+        $(`[data-answer="${playerAnswer}"]`).css("background-color", "red");
       }
     }
 

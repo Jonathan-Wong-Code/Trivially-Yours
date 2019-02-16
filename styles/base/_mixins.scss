@@ -1,0 +1,25 @@
+
+@mixin respond($breakpoint) {
+	@if $breakpoint==large { 
+		@media only screen and (max-width:80em){@content}; // 1280 /16px = 80em
+	}
+	
+	@if $breakpoint==medium {
+		@media only screen and (max-width:65.625em){@content}; // 1050px/16px = 65.625em
+	}
+	
+	@if $breakpoint==medium2 {
+		@media only screen and (max-width:56.25em){@content}; // 900px/16px = 56.25em
+  }
+  
+  @if $breakpoint==medium3 {
+		@media only screen and (max-width:50em){@content}; // 800px/16px = 50emem
+  }
+  
+  @if $breakpoint==small {
+		@media only screen and (max-width:43.75em){@content}; // 700px/16px = 43.75em
+	}
+
+}
+
+// Responsive Mixin Referenced from https://www.udemy.com/advanced-css-and-sass/

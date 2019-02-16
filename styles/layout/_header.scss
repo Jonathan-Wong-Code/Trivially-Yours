@@ -1,13 +1,12 @@
-.header{
-  
-  &-heading {
-    margin:0;
-    font-size:4rem;
+.header{  
+  &-heading {  
+    font-size: 4rem;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing:20px;
+    letter-spacing: 20px;
+    margin: 0;
+    padding: .5rem 0rem;
+
     background: linear-gradient(120deg, rgba($color-black,.8) 50%, rgba($color-primary,.8));
-    padding:.5rem 0rem;
-    
   }
 }

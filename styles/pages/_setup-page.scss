@@ -2,22 +2,22 @@
   padding: 2rem 0rem; 
 
   &-form {
-    width:60%;
-    margin:auto;
+    width: 60%;
+    margin: auto;
 
-    border:10px solid $color-white;
-    padding:1rem;
+    border: 10px solid $color-white;
+    padding: 1rem;
 
     text-align: center;
 
-    display:flex;
+    display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     background-color: rgba($color-black,.5);
   }
 
   &-name {
-    width:75%;
+    width: 75%;
   }
 
   &-number-questions, 
@@ -30,11 +30,11 @@
     text-align: center;
 
     padding: .5rem;
-    border-radius:10px;
+    border-radius: 10px;
 
     &:focus {
-      color:white;
-      outline:5px solid $color-white;
+      color: white;
+      outline: 5px solid $color-white;
       background-color: lighten($color-primary-light,20);
     }
   }
@@ -44,7 +44,7 @@
   }
   
   &-label{
-    font-size:1.5rem;
-    margin:.8rem 0;
+    font-size: 1.5rem;
+    margin: .8rem 0;
   }
 }

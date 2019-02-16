@@ -1,9 +1,9 @@
 //**** DATA LOGIC *****//
-const game = {
-     questions : [],
-     totalQuestions : 0,
-     correctAnswers : 0,
-     currentQuestionNumber : 0,
+  const game = {
+    questions : [],
+    totalQuestions : 0,
+    correctAnswers : 0,
+    currentQuestionNumber : 0,
 
     async startNewGame(category, difficulty, numQuestions) {
       this.resetStats();
@@ -69,10 +69,8 @@ const game = {
       return returnedQuestion;
     },
 
-    guessAnswer(playerGuess, question) {
-      const answerIndex = question.allAnswers.indexOf(question.correctAnswer);
-      
-      playerGuess = parseInt(playerGuess,10);
+    guessAnswer(playerGuess, answerIndex) {
+      playerGuess = parseInt(playerGuess, 10);
 
       if (playerGuess === answerIndex) {
         this.correctAnswers += 1;
@@ -119,9 +117,9 @@ const game = {
     const answerQuestionControl = (e) => {
       const button = e.target.closest(".question-answer-btn");
       const answer = button.dataset.answer;
-      const result = game.guessAnswer(answer, game.question);
       const correctAnswerIndex = 
         game.question.allAnswers.indexOf(game.question.correctAnswer);
+      const result = game.guessAnswer(answer, correctAnswerIndex);
 
       updateScore(game.correctAnswers);
       setButtonAnswerStyles(result, answer, correctAnswerIndex);
@@ -148,10 +146,10 @@ const game = {
       }
     }
 
-    //Event Listeners  
+    //***** EVENT LISTENERS ************// 
     gameArea.on("click", (e) => {
       e.preventDefault();
-      console.log(e.target);
+      
       //Click on an answer
       if(e.target.matches(".question-answer-btn, .question-answer-btn *")) {   
         answerQuestionControl(e);
@@ -179,12 +177,12 @@ const game = {
 
     //Creates each Answer button.
     const createAnswer = (answer, index) =>`
-    <li class="question-list-item">
-      <button class="question-answer-btn btn" data-answer='${index}'>
-        <span class="question-num">${index + 1}.</span> 
-        <p class="question-answer">${answer}</p>
-      </button>
-    </li>
+      <li class="question-list-item">
+        <button class="question-answer-btn btn" data-answer='${index}'>
+          <span class="question-num">${index + 1}.</span> 
+          <p class="question-answer">${answer}</p>
+        </button>
+      </li>
     `;
 
     //Renders Initial Game "board" start.

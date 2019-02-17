@@ -9,8 +9,12 @@
       this.resetStats();
 
       try { 
-        const response = await axios.get("https://opentdb.com/api.php", {
-          params : {
+        //Switched out Axios with ajax for sake of assignment
+        const response = await $.ajax({
+          url: "https://opentdb.com/api.php",
+          method: "GET",
+          dataType: "json",
+          data: {
             amount : numQuestions,
             category,
             difficulty,
@@ -18,7 +22,16 @@
           }
         });
 
-        const data = response.data.results;
+         // const response = await axios.get("https://opentdb.com/api.php", {
+        //   params : {
+        //     amount : numQuestions,
+        //     category,
+        //     difficulty,
+        //     type: "multiple"
+        //   }
+        // });
+
+        const data = response.results;
         
         data.forEach(question => {
           this.questions.push({

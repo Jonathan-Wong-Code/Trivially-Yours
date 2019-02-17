@@ -486,6 +486,9 @@ img {
         grid-row-gap: .5rem; } }
   .question-list-item {
     height: 100%; }
+    @media only screen and (max-width: 56.25em) {
+      .question-list-item {
+        height: auto; } }
   .question-list-item:not(:last-child) {
     margin-bottom: .5rem; }
     @media only screen and (max-width: 56.25em) {

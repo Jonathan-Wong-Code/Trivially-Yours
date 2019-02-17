@@ -34,7 +34,7 @@
     }
 
     @include respond(small2) {
-      border: none;
+      border: none;  
     }
 
     @include respond(small3) {
@@ -189,6 +189,10 @@
 
   &-list-item {
     height: 100%;
+
+    @include respond(medium2) {
+      height: auto;
+    }
   }
 
   &-list-item {

@@ -33,16 +33,16 @@
     }
 
     @include respond(small2) {
-      padding: 1rem 0;
       font-size: 1.6rem;
-      line-height: 1.1;  
+      line-height: 1.1; 
+      padding: 1rem 0;
       min-height: 18vh;
     }
 
     @include respond(small3) {
       font-size:1.3rem;
-      min-height:13vh;
       padding:.5rem;
+      min-height:13vh;
     }
   }
 }

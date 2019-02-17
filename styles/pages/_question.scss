@@ -1,5 +1,5 @@
 .question {
-  padding: 2% 0;
+  padding: 2rem 0;
 
   @include respond(large) {
     padding: 2rem;
@@ -36,7 +36,6 @@
     @include respond(small3) {
       padding: .5rem;
     }
-
   } 
 
   &-header { 
@@ -123,10 +122,10 @@
   }
 
   &-box{
+    margin-top:1.5%;
     display: flex;
     align-items: center;
-    flex-direction: column;
-    margin-top:1.5%;
+    flex-direction: column; 
   }
 
   &-player-name {
@@ -149,15 +148,14 @@
     }
 
     @include respond(medium2) {
-      margin:.5rem 0;
-      font-size:1.3rem;
+      font-size:1.3rem;  
       margin-top:5%;
       margin-bottom:5%;
     }
 
     @include respond(small) {
-      margin:6% 0 3% 0;
       font-size:1.2rem;
+      margin:6% 0 3% 0;
     }
 
     @include respond(small2) {
@@ -201,14 +199,16 @@
 
   &-answer-btn {
     width: 100%;
-    text-align: left;
     height: 100%;
-    line-height: 1.2;
+
     font-size:1.3rem;
+    text-align: left;
+    line-height: 1.2;
+    letter-spacing: 2px;
+
     display:flex;
     align-items: center;
-    letter-spacing: 2px;
-   
+    
     @include respond(medium) {
       font-size:1.1rem;
       padding:.5rem 1rem;

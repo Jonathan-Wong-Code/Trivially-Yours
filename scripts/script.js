@@ -92,7 +92,7 @@
       const difficulty = $(".setup-difficulty").val();
       const category = $(".setup-categories").val();
       const numQuestions = $(".setup-number-questions").val(); 
-      console.log("test");
+      
       if(playerName) {
         try {
           await game.startNewGame(category, difficulty, numQuestions);//Initialize new game.
@@ -159,7 +159,7 @@
       if(e.target.matches(".question-answer-btn, .question-answer-btn *")) {   
         answerQuestionControl(e);
        
-        //When we click on "Next Question"
+        //Click on "Next Question"
         $(".question-next").on("click", () => {
           toggleQuestionNext();
           nextQuestionControl();      
@@ -244,12 +244,14 @@
       $(".question-next").toggleClass("hidden");
     }
 
+    //* Hides Header if less than 900px */
     const toggleHideHeader = () => {
       if ($(window).width() < 900) {
         $(".header").toggleClass("hidden"); 
       }
     }
 
+    //* Shows mobile header of questions section if less than 900x*//
     const showMobileHeading = () => {
       if ($(window).width() < 900) {
         $(".question-mobile-heading").text("Trivially Yours"); 
@@ -261,7 +263,7 @@
     }
 
     const renderGameOverText = () => {
-      $(".question-count").text(`Game Over!`);
+      $(".question-count").text("Game Over!");
     }
 
     //** Sets Button styles based on correct or wrong answer **//
@@ -363,6 +365,3 @@
       gameArea.html(markup);
     }    
   });
-
-  //Question about backticks when needed w/ double quotes
-  //Axios?

@@ -1,9 +1,7 @@
 .setup {
   padding:2rem 0;
   
-
   @include respond(medium2) {
-   
     padding-bottom:0;
   }
 
@@ -13,16 +11,19 @@
   
   &-form {
     width: 60%;
-    margin: auto;
-    border: 10px solid $color-white;
-    padding: 1rem;
+
     text-align: center;
+
+    margin: auto;
+    padding: 1rem;
+    border: 10px solid $color-white;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
+
     background-color: rgba($color-black,.5);
     
-
     @include respond(large) {
       width:70%;
     }
@@ -35,11 +36,11 @@
       width:90%;
     }
 
-    @include respond(small2) {
-      border:5px solid $color-white;
+    @include respond(small2) { 
       width:100%;
-      padding:1rem 0;
       height: 82vh;
+      padding:1rem 0;
+      border:5px solid $color-white;   
     }
 
     @include respond(small3) {
@@ -72,11 +73,11 @@
   &-difficulty, 
   &-categories, 
   &-name {
+    height:3rem;
     font-size: 1.4rem;
     font-family: $font-secondary;
     letter-spacing: 2px;
     text-align: center;
-    height:3rem;
     padding: 0rem 1rem;
     border-radius: 10px;
     display:block; 

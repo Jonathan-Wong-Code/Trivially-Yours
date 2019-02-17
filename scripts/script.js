@@ -205,16 +205,15 @@
         <section class="question">
           <div class="wrapper question-wrapper">
             <div class="question-content">
-            <h2 class="question-mobile-heading"></h2>
+              <h2 class="question-mobile-heading"></h2>
               <div class="question-header">
-                
                 <h2 class="question-count question-heading">Question ${currentQuestionNum}/${totalQuestionNum}</h2>
                 <h2 class="question-correct-answers question-heading">Correct Answers: 0</h2>
                 <p class="question-player-name question-heading">Player: ${playerName}</p>
               </div>
               
               <div class="question-box">
-                <h3 class="question-question">${question.question}</h3>
+                <p class="question-question">${question.question}</p>
                 <ul class="question-answers">
                 ${question.allAnswers
                   .map((answer, index) => createAnswer(answer, index)).join("")} 
@@ -231,7 +230,7 @@
     //**Renders each new question**//
     const renderNewQuestion = (question) => {
       const markup= `
-        <h3 class="question-question">${question.question}</h3>
+        <p class="question-question">${question.question}</p>
         <ul class="question-answers">
           ${question.allAnswers
            .map((answer, index) => createAnswer(answer, index)).join("")} 

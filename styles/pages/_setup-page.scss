@@ -41,6 +41,11 @@
       padding:1rem 0;
       height: 82vh;
     }
+
+    @include respond(small3) {
+      height: 87vh;
+      padding: .5rem;
+    }
   }
 
   &-name {

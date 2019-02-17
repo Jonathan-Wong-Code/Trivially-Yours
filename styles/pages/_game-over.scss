@@ -10,6 +10,10 @@
     height:82vh;
   }
 
+  @include respond(small3) {
+    height:87vh;
+  }
+
   &-wrapper {
     text-align: center;
     border: 5px solid #fff;
@@ -21,6 +25,10 @@
 
     @include respond(small2) {
       padding:2rem 1rem;
+    }
+
+    @include respond(small3) {
+      padding:.5rem;
     }
   }
 
@@ -39,5 +47,9 @@
 
   &-stats {
     margin: 1rem 0;
+    
+    @include respond(small3) {
+      margin: .5rem 0;
+    }
   }
 }

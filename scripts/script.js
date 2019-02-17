@@ -183,7 +183,7 @@
     //Creates each Answer button.
     const createAnswer = (answer, index) =>`
       <li class="question-list-item">
-        <button class="question-answer-btn btn" data-answer='${index}'>
+        <button class="question-answer-btn btn" data-answer="${index}">
           <span class="question-num">${index + 1}.</span> 
           <p class="question-answer">${answer}</p>
         </button>
@@ -208,7 +208,7 @@
                 <h3 class="question-question">${question.question}</h3>
                 <ul class="question-answers">
                 ${question.allAnswers
-                  .map((answer, index) => createAnswer(answer,index)).join('')} 
+                  .map((answer, index) => createAnswer(answer,index)).join("")} 
                 </ul>
                 <button class="question-next hidden btn">Next Question</button>
               </div>
@@ -225,7 +225,7 @@
         <h3 class="question-question">${question.question}</h3>
         <ul class="question-answers">
           ${question.allAnswers
-           .map((answer, index) => createAnswer(answer,index)).join('')} 
+           .map((answer, index) => createAnswer(answer,index)).join("")} 
         </ul>
         <button class="question-next hidden btn">Next Question</button>  
       `; 

@@ -24,13 +24,17 @@
     background-color: rgba($color-black,.5);
 
     @include respond(medium2) {    
-      height:100%;
-      padding:2rem;   
-      width:100%;
+      width: 100%;
+      height: 100%;
+      padding: 2rem;      
     }
 
     @include respond(small) {
-      padding:1rem;
+      padding: 1rem;
+    }
+
+    @include respond(small3) {
+      padding: .5rem;
     }
 
   } 
@@ -39,6 +43,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+
     @include respond(medium) {
       grid-template-columns: 1fr 1fr;
     }
@@ -51,36 +56,49 @@
     @include respond(small) {
       grid-template-columns: 1fr;
     }
+
+    @include respond (small3) {
+      margin-top: .5rem;
+    }
   }
 
   &-heading {
     text-decoration: underline;
     margin: 0;
     font-size:2.25rem;
-    
+
     @include respond(medium) {
       font-size:2rem;
       text-decoration: none;
     }
 
     @include respond(medium2) {
-      font-size:1.8rem;
+      font-size: 1.8rem;
     }
 
     @include respond(medium3) {
-      font-size:1.5rem;
+      font-size: 1.5rem;
     }
 
     @include respond(small2) {
-      font-size:1.1rem;
+      font-size: 1.1rem;
+    }
+
+    @include respond(small3) {
+      font-size: 1rem;
     }
   }
 
   &-mobile-heading {
-    margin:0;
+    margin: 0;
 
     @include respond(small2) {
-      font-size:1.4rem;
+      font-size: 1.4rem;
+    }
+
+    @include respond(small3) {
+      font-size: 1.3rem;
+      display:none;
     }
   }
 
@@ -145,6 +163,10 @@
     @include respond(small2) {
       font-size:.9rem;
     }
+
+    @include respond(small3) {
+      margin: 2% 0;
+    }
   }
 
   &-answers {
@@ -202,6 +224,10 @@
     @include respond(small2) {
       font-size: .9rem;
       border:3px solid $color-white;
+    }
+
+    @include respond(small3) {
+     padding: .4rem 1rem; 
     }
   }
 

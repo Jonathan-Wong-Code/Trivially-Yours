@@ -21,15 +21,15 @@ body {
   @include respond(small) {
     font-size:1.2rem;
   }
+
+  @include respond(small3) {
+    font-size: 1rem;
+  }
 }
 
 .wrapper{
   max-width: 1280px;
   margin: 0 auto;
-}
-
-.game-area {
-  
 }
 
 ul {
@@ -57,6 +57,8 @@ img {
   color: currentColor;
   transition: .3s all;
 
+  letter-spacing:3px;
+  
     &:hover, &:focus {
       transform: translateY(-2px);
       box-shadow: inset -1px -2px 2px 70px $color-primary-light;

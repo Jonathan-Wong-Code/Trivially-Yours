@@ -183,6 +183,9 @@ img {
   -o-transition: .3s all;
   transition: .3s all;
   letter-spacing: 3px; }
+  @media only screen and (max-width: 31.25em) {
+    .btn {
+      border: 3px solid #fff; } }
   .btn:hover, .btn:focus {
     -webkit-transform: translateY(-2px);
     -ms-transform: translateY(-2px);
@@ -202,12 +205,11 @@ img {
       box-shadow: none; }
 
 .header-heading {
-  font-size: 4rem;
+  font-size: 3.8rem;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 20px;
   margin: 0 auto;
-  padding: .5rem 0rem;
   background: -webkit-linear-gradient(330deg, rgba(0, 0, 0, 0.8) 50%, rgba(91, 50, 86, 0.8));
   background: -o-linear-gradient(330deg, rgba(0, 0, 0, 0.8) 50%, rgba(91, 50, 86, 0.8));
   background: linear-gradient(120deg, rgba(0, 0, 0, 0.8) 50%, rgba(91, 50, 86, 0.8));
@@ -235,18 +237,17 @@ img {
       font-size: 2rem; } }
   @media only screen and (max-width: 31.25em) {
     .header-heading {
-      font-size: 1.6rem;
       line-height: 1.1;
+      letter-spacing: 10px;
       padding: 1rem 0;
       min-height: 18vh; } }
   @media only screen and (max-width: 25em) {
     .header-heading {
-      font-size: 1.3rem;
-      padding: .5rem;
+      font-size: 1.4rem;
       min-height: 13vh; } }
 
 .setup {
-  padding: 2rem 0; }
+  padding: 1.8rem 0; }
   @media only screen and (max-width: 56.25em) {
     .setup {
       padding-bottom: 0; } }
@@ -284,7 +285,7 @@ img {
         width: 100%;
         height: 82vh;
         padding: 1rem 0;
-        border: 5px solid #fff; } }
+        border: none; } }
     @media only screen and (max-width: 25em) {
       .setup-form {
         height: 87vh;
@@ -358,6 +359,9 @@ img {
     @media only screen and (max-width: 43.75em) {
       .question-content {
         padding: 1rem; } }
+    @media only screen and (max-width: 31.25em) {
+      .question-content {
+        border: none; } }
     @media only screen and (max-width: 25em) {
       .question-content {
         padding: .5rem; } }
@@ -519,8 +523,7 @@ img {
         font-size: 1rem; } }
     @media only screen and (max-width: 31.25em) {
       .question-answer-btn {
-        font-size: .9rem;
-        border: 3px solid #fff; } }
+        font-size: .9rem; } }
     @media only screen and (max-width: 25em) {
       .question-answer-btn {
         padding: .4rem 1rem; } }
@@ -534,13 +537,6 @@ img {
       .question-next {
         margin-top: 1rem;
         font-size: 1.1rem; } }
-    @media only screen and (max-width: 43.75em) {
-      .question-next {
-        font-size: 1rem; } }
-    @media only screen and (max-width: 31.25em) {
-      .question-next {
-        font-size: .9rem;
-        border: 3px solid #fff; } }
 
 .game-over {
   padding: 2rem 0; }
@@ -559,28 +555,43 @@ img {
     border: 5px solid #fff;
     padding: 2rem;
     background: rgba(0, 0, 0, 0.5);
-    display: -ms-grid;
-    display: grid;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
     height: 100%; }
     @media only screen and (max-width: 31.25em) {
       .game-over-wrapper {
-        padding: 2rem 1rem; } }
+        padding: 2rem 1rem;
+        border: none; } }
     @media only screen and (max-width: 25em) {
       .game-over-wrapper {
         padding: .5rem; } }
   .game-over-heading {
     margin: 0; }
-  .game-over-img-box {
-    width: 40%;
-    margin: 0 auto; }
-    @media only screen and (max-width: 31.25em) {
-      .game-over-img-box {
-        width: 60%; } }
   .game-over-stats {
     margin: 1rem 0; }
     @media only screen and (max-width: 25em) {
       .game-over-stats {
         margin: .5rem 0; } }
+  .game-over-img-box {
+    width: 20%;
+    margin: 0 auto; }
+    @media only screen and (max-width: 56.25em) {
+      .game-over-img-box {
+        width: 30%; } }
+    @media only screen and (max-width: 31.25em) {
+      .game-over-img-box {
+        width: 40%; } }
+  @media only screen and (max-width: 25em) {
+    .game-over-message {
+      margin: .5rem; } }

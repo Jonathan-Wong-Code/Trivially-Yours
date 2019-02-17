@@ -1,14 +1,12 @@
 .header{ 
  
   &-heading {    
-    font-size: 4rem;
+    font-size: 3.8rem;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 20px;
 
     margin:0 auto;
-    padding: .5rem 0rem;
-
     background: linear-gradient(120deg, rgba($color-black,.8) 50%, rgba($color-primary,.8));
 
     display:flex;
@@ -33,15 +31,14 @@
     }
 
     @include respond(small2) {
-      font-size: 1.6rem;
       line-height: 1.1; 
+      letter-spacing:10px;
       padding: 1rem 0;
       min-height: 18vh;
     }
 
     @include respond(small3) {
-      font-size:1.3rem;
-      padding:.5rem;
+      font-size:1.4rem;
       min-height:13vh;
     }
   }

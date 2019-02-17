@@ -33,6 +33,10 @@
       padding: 1rem;
     }
 
+    @include respond(small2) {
+      border:none;
+    }
+
     @include respond(small3) {
       padding: .5rem;
     }
@@ -64,10 +68,10 @@
   &-heading {
     text-decoration: underline;
     margin: 0;
-    font-size:2.25rem;
+    font-size: 2.25rem;
 
     @include respond(medium) {
-      font-size:2rem;
+      font-size: 2rem;
       text-decoration: none;
     }
 
@@ -97,7 +101,7 @@
 
     @include respond(small3) {
       font-size: 1.3rem;
-      display:none;
+      display: none;
     }
   }
 
@@ -122,7 +126,7 @@
   }
 
   &-box{
-    margin-top:1.5%;
+    margin-top: 1.5%;
     display: flex;
     align-items: center;
     flex-direction: column; 
@@ -133,7 +137,7 @@
     margin: 1rem 0 0 0;
 
     @include respond(small) {
-      margin:0;
+      margin: 0;
     }
   }
 
@@ -148,18 +152,18 @@
     }
 
     @include respond(medium2) {
-      font-size:1.3rem;  
-      margin-top:5%;
-      margin-bottom:5%;
+      font-size: 1.3rem;  
+      margin-top: 5%;
+      margin-bottom: 5%;
     }
 
     @include respond(small) {
-      font-size:1.2rem;
-      margin:6% 0 3% 0;
+      font-size: 1.2rem;
+      margin: 6% 0 3% 0;
     }
 
     @include respond(small2) {
-      font-size:.9rem;
+      font-size: .9rem;
     }
 
     @include respond(small3) {
@@ -171,15 +175,15 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1.5rem;
-    margin-top:1rem;
+    margin-top: 1rem;
 
     @include respond(medium2) {
       grid-template-columns: 1fr;
-      grid-gap:1rem;
+      grid-gap: 1rem;
     }
 
     @include respond(small2) {
-      grid-row-gap:.5rem;
+      grid-row-gap: .5rem;
     }
   }
 
@@ -192,7 +196,7 @@
       margin-bottom: .5rem;
 
       @include respond(medium2) {
-        margin:0;
+        margin: 0;
       }
     }
   }
@@ -201,17 +205,17 @@
     width: 100%;
     height: 100%;
 
-    font-size:1.3rem;
+    font-size: 1.3rem;
     text-align: left;
     line-height: 1.2;
     letter-spacing: 2px;
 
-    display:flex;
+    display: flex;
     align-items: center;
     
     @include respond(medium) {
-      font-size:1.1rem;
-      padding:.5rem 1rem;
+      font-size: 1.1rem;
+      padding: .5rem 1rem;
     }
 
     @include respond(medium2) {
@@ -223,7 +227,6 @@
 
     @include respond(small2) {
       font-size: .9rem;
-      border:3px solid $color-white;
     }
 
     @include respond(small3) {
@@ -248,12 +251,11 @@
     }
 
     @include respond(small) {
-      font-size:1rem;
+      // font-size:1rem;
     }
 
     @include respond(small2) {
-      font-size: .9rem;
-      border:3px solid $color-white;
+      // font-size: .9rem;
     }
   }
 }

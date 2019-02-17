@@ -98,7 +98,6 @@
           game.question = game.getQuestion();
           
           toggleHideHeader();
-          
           renderGame(
             game.question, 
             playerName, 
@@ -137,7 +136,7 @@
 
     //Click next question logic
     const nextQuestionControl = () => {
-      if(game.questions.length > 0) { //If game isn"t over. Display next question
+      if(game.questions.length > 0) { //If game isn't over. Display next question
         game.question = game.getQuestion();
         updateQuestionNumber(game.currentQuestionNumber, game.totalQuestions);
         renderNewQuestion(game.question);
@@ -206,7 +205,7 @@
                 <h3 class="question-question">${question.question}</h3>
                 <ul class="question-answers">
                 ${question.allAnswers
-                  .map((answer, index) => createAnswer(answer,index)).join("")} 
+                  .map((answer, index) => createAnswer(answer, index)).join("")} 
                 </ul>
                 <button class="question-next hidden btn">Next Question</button>
               </div>
@@ -223,7 +222,7 @@
         <h3 class="question-question">${question.question}</h3>
         <ul class="question-answers">
           ${question.allAnswers
-           .map((answer, index) => createAnswer(answer,index)).join("")} 
+           .map((answer, index) => createAnswer(answer, index)).join("")} 
         </ul>
         <button class="question-next hidden btn">Next Question</button>  
       `; 

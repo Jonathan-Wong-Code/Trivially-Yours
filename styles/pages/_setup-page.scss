@@ -1,5 +1,5 @@
 .setup {
-  padding:2rem 0;
+  padding:1.8rem 0;
   
   @include respond(medium2) {
     padding-bottom:0;
@@ -40,9 +40,9 @@
       width:100%;
       height: 82vh;
       padding:1rem 0;
-      border:5px solid $color-white;   
+      border:none;
     }
-
+    
     @include respond(small3) {
       height: 87vh;
       padding: .5rem;

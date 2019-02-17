@@ -21,16 +21,6 @@
             type: "multiple"
           }
         });
-
-         // const response = await axios.get("https://opentdb.com/api.php", {
-        //   params : {
-        //     amount : numQuestions,
-        //     category,
-        //     difficulty,
-        //     type: "multiple"
-        //   }
-        // });
-
         const data = response.results;
         
         data.forEach(question => {

@@ -6,15 +6,15 @@
     text-transform: uppercase;
     letter-spacing: 20px;
 
-    margin:0 auto;
+    margin: 0 auto;
     background: linear-gradient(120deg, rgba($color-black,.8) 50%, rgba($color-primary,.8));
 
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
 
     @include respond(large) {
-      font-size:3.5rem;
+      font-size: 3.5rem;
     }
 
     @include respond(medium) {

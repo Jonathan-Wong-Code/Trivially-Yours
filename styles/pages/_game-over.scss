@@ -28,7 +28,7 @@
 
     @include respond(small2) {
       padding: 2rem 1rem;
-      border:none;
+      border: none;
     }
 
     @include respond(small3) {
@@ -62,11 +62,8 @@
   }
 
   &-message {
-
     @include respond(small3) {
       margin:.5rem;
     }
   }
-
- 
 }

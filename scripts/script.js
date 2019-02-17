@@ -176,7 +176,6 @@
     });
 
     //******** VIEW LOGIC ********//
-
     //Creates each Answer button.
     const createAnswer = (answer, index) =>`
       <li class="question-list-item">

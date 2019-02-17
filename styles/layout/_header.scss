@@ -32,14 +32,14 @@
 
     @include respond(small2) {
       line-height: 1.1; 
-      letter-spacing:10px;
+      letter-spacing: 10px;
       padding: 1rem 0;
       min-height: 18vh;
     }
 
     @include respond(small3) {
-      font-size:1.4rem;
-      min-height:13vh;
+      font-size: 1.4rem;
+      min-height: 13vh;
     }
   }
 }

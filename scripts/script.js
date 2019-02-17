@@ -8,9 +8,7 @@
     async startNewGame(category, difficulty, numQuestions) {
       this.resetStats();
 
-      try {
-        // const response = await axios.get(`https://opentdb.com/api.php?amount=${numQuestions}&category=${category}&difficulty=${difficulty}`);
-
+      try { 
         const response = await axios.get("https://opentdb.com/api.php", {
           params : {
             amount : numQuestions,

@@ -1,5 +1,7 @@
 html {
   font-size: 125%;
+  padding:0;
+  margin:0;
 }
 
 body {
@@ -7,8 +9,9 @@ body {
   font-family: $font-primary;
   letter-spacing: 5px;
   line-height: 1.6;
-
   background-image: url("./../images/background.png");
+  padding:0;
+  margin:0;
   color: $color-white;
 
   @include respond(medium2) {
@@ -26,7 +29,7 @@ body {
 }
 
 .game-area {
-  padding: 1px;
+  
 }
 
 ul {

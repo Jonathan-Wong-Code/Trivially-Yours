@@ -318,7 +318,7 @@
     const renderSetup = () => {
       const markup = `
         <section class="setup">
-          <div class="wrapper">
+          <div class="wrapper setup-wrapper">
             <form action="" class="setup-form">
               <label class="setup-label" for="setup-name">
                 Enter Name

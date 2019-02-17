@@ -1,13 +1,17 @@
-.header{  
+.header{ 
+ 
   &-heading {  
+    display:flex;
+    align-items: center;
+    justify-content: center;
     font-size: 4rem;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 20px;
-    margin: 0;
+    margin:0 auto;
     padding: .5rem 0rem;
     background: linear-gradient(120deg, rgba($color-black,.8) 50%, rgba($color-primary,.8));
-
+    
     @include respond(large) {
       font-size:3.5rem;
     }
@@ -23,6 +27,13 @@
 
     @include respond(small) {
       font-size:2rem;
+    }
+
+    @include respond(small2) {
+      padding: 1rem 0;
+      line-height:1.1;
+      font-size:1.6rem;
+      min-height: 18vh;
     }
   }
 }

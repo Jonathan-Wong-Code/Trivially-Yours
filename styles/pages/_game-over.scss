@@ -5,6 +5,11 @@
     padding: 2rem;
   }
 
+  @include respond(small2) {
+    padding:0rem;
+    height:82vh;
+  }
+
   &-wrapper {
     text-align: center;
     border: 5px solid #fff;
@@ -12,6 +17,11 @@
     background: rgba(0,0,0,.5);
     display: grid;
     justify-content: center;
+    height:100%;
+
+    @include respond(small2) {
+      padding:2rem 1rem;
+    }
   }
 
   &-heading{
@@ -21,6 +31,10 @@
   &-img-box{
     width: 40%;
     margin: 0 auto;
+
+    @include respond(small2) {
+      width:60%;
+    }
   }
 
   &-stats {

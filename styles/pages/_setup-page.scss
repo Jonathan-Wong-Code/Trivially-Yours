@@ -8,13 +8,13 @@
   @include respond(small2) {
     padding:0;
   }
-  
+
   &-form {
     width: 60%;
 
     text-align: center;
 
-    margin: auto;
+    margin:0 auto;
     padding: 1rem;
     border: 10px solid $color-white;
     
@@ -42,7 +42,7 @@
       padding:1rem 0;
       border:none;
     }
-    
+
     @include respond(small3) {
       height: 87vh;
       padding: .5rem;
@@ -73,7 +73,7 @@
   &-difficulty, 
   &-categories, 
   &-name {
-    height:3rem;
+    height:2.8rem;
     font-size: 1.4rem;
     font-family: $font-secondary;
     letter-spacing: 2px;
@@ -103,10 +103,6 @@
   }
   
   &-label{
-    margin: .8rem 0;
-
-    @include respond(small2) {
-      margin: .6rem 0;
-    }
+    margin: .6rem 0;
   }
 }

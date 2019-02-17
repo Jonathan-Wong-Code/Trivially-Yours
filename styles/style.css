@@ -145,6 +145,9 @@ body {
   @media only screen and (max-width: 56.25em) {
     body {
       font-size: 1.4rem; } }
+  @media only screen and (max-width: 43.75em) {
+    body {
+      font-size: 1.2rem; } }
 
 .wrapper {
   max-width: 1280px;
@@ -179,8 +182,8 @@ img {
     -webkit-transform: translateY(-2px);
     -ms-transform: translateY(-2px);
     transform: translateY(-2px);
-    -webkit-box-shadow: inset -1px -2px 7px 50px #9B59B6;
-    box-shadow: inset -1px -2px 7px 50px #9B59B6;
+    -webkit-box-shadow: inset -1px -2px 2px 70px #9B59B6;
+    box-shadow: inset -1px -2px 2px 70px #9B59B6;
     color: #fff; }
   .btn:disabled {
     background: #5B3256;
@@ -213,6 +216,9 @@ img {
   @media only screen and (max-width: 56.25em) {
     .header-heading {
       font-size: 2.5rem; } }
+  @media only screen and (max-width: 43.75em) {
+    .header-heading {
+      font-size: 2rem; } }
 
 .setup {
   padding: 2rem 0; }
@@ -239,8 +245,16 @@ img {
     @media only screen and (max-width: 56.25em) {
       .setup-form {
         width: 75%; } }
+    @media only screen and (max-width: 43.75em) {
+      .setup-form {
+        width: 90%; } }
   .setup-name {
     width: 75%; }
+  .setup-categories {
+    width: 60%; }
+    @media only screen and (max-width: 43.75em) {
+      .setup-categories {
+        width: 80%; } }
   .setup-number-questions, .setup-difficulty, .setup-categories, .setup-name {
     font-size: 1.4rem;
     font-family: "Open Sans", sans-serif;
@@ -254,7 +268,8 @@ img {
       background-color: #c6a0d5; }
     @media only screen and (max-width: 56.25em) {
       .setup-number-questions, .setup-difficulty, .setup-categories, .setup-name {
-        font-size: 1.2rem; } }
+        font-size: 1.2rem;
+        letter-spacing: 0; } }
   .setup-button {
     margin: 1rem 0; }
   .setup-label {
@@ -285,6 +300,9 @@ img {
         height: 100%;
         padding: 2rem;
         width: 100%; } }
+    @media only screen and (max-width: 43.75em) {
+      .question-content {
+        padding: 1rem; } }
   .question-header {
     display: -ms-grid;
     display: grid;
@@ -309,7 +327,8 @@ img {
         grid-template-columns: 1fr; } }
   .question-heading {
     text-decoration: underline;
-    margin: 0; }
+    margin: 0;
+    font-size: 2.25rem; }
     @media only screen and (max-width: 65.625em) {
       .question-heading {
         font-size: 2rem;
@@ -320,8 +339,14 @@ img {
     @media only screen and (max-width: 50em) {
       .question-heading {
         font-size: 1.5rem; } }
+    @media only screen and (max-width: 31.25em) {
+      .question-heading {
+        font-size: 1.1rem; } }
   .question-mobile-heading {
     margin: 0; }
+    @media only screen and (max-width: 31.25em) {
+      .question-mobile-heading {
+        font-size: 1.4rem; } }
   @media only screen and (max-width: 65.625em) {
     .question-count {
       -ms-grid-column-align: start;
@@ -351,19 +376,8 @@ img {
     flex-direction: column;
     margin-top: 1.5%; }
   .question-player-name {
-    font-size: 2.25rem;
     grid-column: 1/-1;
     margin: 1rem 0 0 0; }
-    @media only screen and (max-width: 65.625em) {
-      .question-player-name {
-        font-size: 1.8rem; } }
-    @media only screen and (max-width: 56.25em) {
-      .question-player-name {
-        margin-left: 1rem;
-        grid-column: 1/-1; } }
-    @media only screen and (max-width: 50em) {
-      .question-player-name {
-        font-size: 1.5rem; } }
     @media only screen and (max-width: 43.75em) {
       .question-player-name {
         margin: 0; } }
@@ -383,7 +397,11 @@ img {
         margin-bottom: 5%; } }
     @media only screen and (max-width: 43.75em) {
       .question-question {
-        margin: 3% 0; } }
+        margin: 6% 0 3% 0;
+        font-size: 1.2rem; } }
+    @media only screen and (max-width: 31.25em) {
+      .question-question {
+        font-size: .9rem; } }
   .question-answers {
     display: -ms-grid;
     display: grid;
@@ -396,6 +414,9 @@ img {
         -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
         grid-gap: 1rem; } }
+    @media only screen and (max-width: 31.25em) {
+      .question-answers {
+        grid-row-gap: .5rem; } }
   .question-list-item {
     height: 100%; }
   .question-list-item:not(:last-child) {
@@ -408,29 +429,30 @@ img {
     text-align: left;
     height: 100%;
     line-height: 1.2;
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: -webkit-min-content 1fr;
-    -ms-grid-columns: min-content 1fr;
-    grid-template-columns: -webkit-min-content 1fr;
-    grid-template-columns: min-content 1fr;
-    grid-column-gap: 10px;
-    grid-row-gap: 5px;
+    font-size: 1.3rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center; }
+    align-items: center;
+    letter-spacing: 2px; }
     @media only screen and (max-width: 65.625em) {
       .question-answer-btn {
-        font-size: 1.3rem;
-        padding: .5rem 1rem;
+        font-size: 1.1rem;
+        padding: .5rem 1rem; } }
+    @media only screen and (max-width: 56.25em) {
+      .question-answer-btn {
         height: auto; } }
     @media only screen and (max-width: 50em) {
       .question-answer-btn {
-        font-size: 1.1rem; } }
+        font-size: 1rem; } }
+    @media only screen and (max-width: 31.25em) {
+      .question-answer-btn {
+        font-size: .9rem;
+        border: 3px solid #fff; } }
   .question-num {
-    -ms-flex-item-align: center;
-    -ms-grid-row-align: center;
-    align-self: center; }
+    margin-right: .5rem; }
   .question-answer {
     margin: 0; }
   .question-next {
@@ -438,10 +460,14 @@ img {
     @media only screen and (max-width: 56.25em) {
       .question-next {
         margin-top: 1rem;
-        font-size: 1.3rem; } }
+        font-size: 1.1rem; } }
     @media only screen and (max-width: 43.75em) {
       .question-next {
-        font-size: 1.1rem; } }
+        font-size: 1rem; } }
+    @media only screen and (max-width: 31.25em) {
+      .question-next {
+        font-size: .9rem;
+        border: 3px solid #fff; } }
 
 .game-over {
   padding: 2rem 0; }
@@ -451,7 +477,7 @@ img {
   .game-over-wrapper {
     text-align: center;
     border: 5px solid #fff;
-    padding: 2rem 0;
+    padding: 2rem;
     background: rgba(0, 0, 0, 0.5);
     display: -ms-grid;
     display: grid;

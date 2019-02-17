@@ -15,7 +15,8 @@
           params : {
             amount : numQuestions,
             category,
-            difficulty
+            difficulty,
+            type: "multiple"
           }
         });
 
@@ -200,7 +201,7 @@
                 
                 <h2 class="question-count question-heading">Question ${currentQuestionNum}/${totalQuestionNum}</h2>
                 <h2 class="question-correct-answers question-heading">Correct Answers: 0</h2>
-                <p class="question-player-name">Player: ${playerName}</p>
+                <p class="question-player-name question-heading">Player: ${playerName}</p>
               </div>
               
               <div class="question-box">

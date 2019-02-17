@@ -20,5 +20,9 @@
     @include respond(medium2) {
       font-size:2.5rem;
     }
+
+    @include respond(small) {
+      font-size:2rem;
+    }
   }
 }

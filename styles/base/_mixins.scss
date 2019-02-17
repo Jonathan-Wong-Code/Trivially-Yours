@@ -18,6 +18,10 @@
   
   @if $breakpoint==small {
 		@media only screen and (max-width:43.75em){@content}; // 700px/16px = 43.75em
+  }
+  
+  @if $breakpoint==small2 {
+		@media only screen and (max-width:31.25em){@content}; // 500px/16px = 31.25em
 	}
 
 }

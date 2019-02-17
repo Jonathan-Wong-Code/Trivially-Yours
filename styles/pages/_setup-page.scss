@@ -22,10 +22,22 @@
     @include respond(medium2) {
       width:75%;
     }
+
+    @include respond(small) {
+      width:90%;
+    }
   }
 
   &-name {
     width: 75%;
+  }
+
+  &-categories {
+    width:60%;
+
+    @include respond(small) {
+      width:80%;
+    }
   }
 
   &-number-questions, 
@@ -48,6 +60,7 @@
 
     @include respond(medium2) {
       font-size:1.2rem;
+      letter-spacing: 0;
     }
   }
 

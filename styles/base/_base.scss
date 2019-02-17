@@ -14,6 +14,10 @@ body {
   @include respond(medium2) {
     font-size:1.4rem;
   }
+
+  @include respond(small) {
+    font-size:1.2rem;
+  }
 }
 
 .wrapper{
@@ -52,7 +56,7 @@ img {
 
     &:hover, &:focus {
       transform: translateY(-2px);
-      box-shadow: inset -1px -2px 7px 50px $color-primary-light;
+      box-shadow: inset -1px -2px 2px 70px $color-primary-light;
       color: $color-white;
     }
     

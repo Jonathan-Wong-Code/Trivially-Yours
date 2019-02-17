@@ -28,6 +28,11 @@
       padding:2rem;   
       width:100%;
     }
+
+    @include respond(small) {
+      padding:1rem;
+    }
+
   } 
 
   &-header { 
@@ -51,7 +56,7 @@
   &-heading {
     text-decoration: underline;
     margin: 0;
-
+    font-size:2.25rem;
     @include respond(medium) {
       font-size:2rem;
       text-decoration: none;
@@ -64,10 +69,18 @@
     @include respond(medium3) {
       font-size:1.5rem;
     }
+
+    @include respond(small2) {
+      font-size:1.1rem;
+    }
   }
 
   &-mobile-heading {
     margin:0;
+
+    @include respond(small2) {
+      font-size:1.4rem;
+    }
   }
 
   &-count {
@@ -98,23 +111,8 @@
   }
 
   &-player-name {
-    font-size: 2.25rem;
     grid-column: 1/-1;
-    
     margin: 1rem 0 0 0;
-
-    @include respond(medium) {
-      font-size:1.8rem;
-    }
-
-    @include respond(medium2) {
-      margin-left:1rem;
-      grid-column: 1/-1;
-    }
-
-    @include respond(medium3) {
-      font-size:1.5rem;
-    }
 
     @include respond(small) {
       margin:0;
@@ -139,12 +137,13 @@
     }
 
     @include respond(small) {
-      margin:3% 0;
+      margin:6% 0 3% 0;
+      font-size:1.2rem;
     }
-    
 
-    @include respond(medium3) {
-      // font-size:1.1rem;
+    
+    @include respond(small2) {
+      font-size:.9rem;
     }
   }
 
@@ -157,6 +156,10 @@
     @include respond(medium2) {
       grid-template-columns: 1fr;
       grid-gap:1rem;
+    }
+
+    @include respond(small2) {
+      grid-row-gap:.5rem;
     }
   }
 
@@ -179,26 +182,31 @@
     text-align: left;
     height: 100%;
     line-height: 1.2;
-
-    display: grid;
-    grid-template-columns: min-content 1fr;
-    grid-column-gap: 10px;
-    grid-row-gap: 5px;
+    font-size:1.3rem;
+    display:flex;
     align-items: center;
-
+    letter-spacing: 2px;
+   
     @include respond(medium) {
-      font-size:1.3rem;
+      font-size:1.1rem;
       padding:.5rem 1rem;
-      height:auto;
     }
 
+    @include respond(medium2) {
+      height:auto;
+    }
     @include respond(medium3) {
-      font-size:1.1rem;
+      font-size:1rem;
+    }
+
+    @include respond(small2) {
+      font-size: .9rem;
+      border:3px solid $color-white;
     }
   }
 
   &-num {
-    align-self: center;
+    margin-right:.5rem;
   }
 
   &-answer {
@@ -210,11 +218,16 @@
     
     @include respond(medium2) {
       margin-top:1rem;
-      font-size:1.3rem;
+      font-size:1.1rem;
     }
 
     @include respond(small) {
-      font-size:1.1rem;
+      font-size:1rem;
+    }
+
+    @include respond(small2) {
+      font-size: .9rem;
+      border:3px solid $color-white;
     }
   }
 }

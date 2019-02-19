@@ -26,15 +26,12 @@
     @include respond(medium2) {    
       width: 100%;
       height: 100%;
-      padding: 2rem;      
+      padding: 2rem;    
+      border: none;    
     }
 
     @include respond(small) {
       padding: 1rem;
-    }
-
-    @include respond(small2) {
-      border: none;  
     }
 
     @include respond(small3) {
@@ -46,10 +43,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-
-    @include respond(medium) {
-      grid-template-columns: 1fr 1fr;
-    }
 
     @include respond(medium2) {
       align-self: start;
@@ -153,8 +146,7 @@
 
     @include respond(medium2) {
       font-size: 1.3rem;  
-      margin-top: 5%;
-      margin-bottom: 5%;
+      margin: 5% 0;
     }
 
     @include respond(small) {

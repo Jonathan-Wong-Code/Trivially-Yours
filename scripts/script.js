@@ -9,7 +9,6 @@
       this.resetStats();
 
       try { 
-        //Switched out Axios with ajax for sake of assignment
         const response = await $.ajax({
           url: "https://opentdb.com/api.php",
           method: "GET",

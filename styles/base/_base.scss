@@ -67,7 +67,7 @@ img {
       
   &:disabled {
     background: $color-primary;
-    color: darken($color-white,20);
+    color: darken($color-white, 20);
 
     &:hover, &:focus {
       transform: none;

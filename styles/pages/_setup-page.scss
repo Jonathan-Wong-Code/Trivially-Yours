@@ -38,13 +38,13 @@
 
     @include respond(small2) { 
       width: 100%;
-      // height: 82vh;
+      height: 82vh;
       padding: 1rem 0;
       border: none;
     }
 
     @include respond(small3) {
-      // height: 87vh;
+      height: 87vh;
       padding: .5rem;
     }
   }

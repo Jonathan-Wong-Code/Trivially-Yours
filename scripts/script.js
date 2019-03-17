@@ -247,7 +247,7 @@
     //* Hides Header if less than 900px */
     const toggleHideHeader = () => {
       if ($(window).width() < 900) {
-        $(".header").toggleClass("hidden"); 
+        $(".header").toggleClass("hidden-header"); 
       }
     }
 

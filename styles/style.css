@@ -263,6 +263,12 @@ img {
   height: 85vh;
 }
 
+@media only screen and (max-width: 25em) {
+  .game-area {
+    height: 90vh;
+  }
+}
+
 @media (max-height: 800px) and (min-width: 900px) {
   .game-area {
     height: 88vh;
@@ -324,6 +330,7 @@ img {
 @media only screen and (max-width: 25em) {
   .header-heading {
     font-size: 1.4rem;
+    height: 10vh;
   }
 }
 
@@ -406,6 +413,7 @@ img {
 @media only screen and (max-width: 25em) {
   .setup-form {
     padding: .5rem;
+    height: 90vh;
   }
 }
 
@@ -598,11 +606,12 @@ img {
 
 .question-mobile-heading {
   margin: 0;
+  margin-bottom: 2rem;
 }
 
 @media only screen and (max-width: 31.25em) {
   .question-mobile-heading {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     margin: 1rem;
   }
 }
@@ -871,6 +880,7 @@ img {
 @media only screen and (max-width: 25em) {
   .game-over-wrapper {
     padding: .5rem;
+    height: 90vh;
   }
 }
 

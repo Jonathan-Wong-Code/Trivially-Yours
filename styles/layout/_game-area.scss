@@ -1,6 +1,10 @@
 .game-area{
   height:85vh;
 
+  @include respond(small3) {
+    height:90vh;
+  }
+
   @media (max-height:800px) and (min-width:900px) {
     height:88vh;
   }

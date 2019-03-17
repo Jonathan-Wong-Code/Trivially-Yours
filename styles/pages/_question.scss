@@ -77,9 +77,10 @@
 
   &-mobile-heading {
     margin: 0;
+    margin-bottom:2rem;
 
     @include respond(small2) {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       margin:1rem;
     }
 

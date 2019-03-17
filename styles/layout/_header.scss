@@ -39,6 +39,7 @@
 
     @include respond(small3) {
       font-size: 1.4rem;
+      height:10vh;
     }
 
     @media (max-height:800px) and (min-width:900px) {

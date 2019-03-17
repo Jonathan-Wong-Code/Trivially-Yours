@@ -118,12 +118,14 @@
 
     // Click on an answer logic
     const answerQuestionControl = (e) => {
-      const button = e.target.closest(".question-answer-btn");
+      const button = e.target.closest(".question-answered");
       const answer = button.dataset.answer;
       const correctAnswerIndex = 
         game.question.allAnswers.indexOf(game.question.correctAnswer);
       const result = game.guessAnswer(answer, correctAnswerIndex);
-
+      document.querySelectorAll(".question-answered").forEach(el => {
+        el.classList.toggle("question-answered");
+      })
       updateScore(game.correctAnswers);
       setButtonAnswerStyles(result, answer, correctAnswerIndex);
       
@@ -155,7 +157,7 @@
       e.preventDefault();
       
       //Click on an answer
-      if(e.target.matches(".question-answer-btn, .question-answer-btn *")) {   
+      if(e.target.matches(".question-answered, .question-answered *")) {   
         answerQuestionControl(e);
        
         //Click on "Next Question"
@@ -166,7 +168,8 @@
       }
 
       //Click play again button. Render setup
-      if(e.target.matches(".game-over-button")) {;
+      if(e.target.matches(".game-over-button")) {
+        document.documentElement.scrollTop = 0;
         renderSetup();
       }
    
@@ -181,7 +184,7 @@
     //Creates each Answer button.
     const createAnswer = (answer, index) =>`
       <li class="question-list-item">
-        <button class="question-answer-btn btn" data-answer="${index}">
+        <button class="question-answer-btn btn question-answered" data-answer="${index}">
           <span class="question-num">${index + 1}.</span> 
           <p class="question-answer">${answer}</p>
         </button>

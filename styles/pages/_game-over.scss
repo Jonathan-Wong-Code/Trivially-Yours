@@ -1,31 +1,41 @@
 .game-over {
-  padding: 2rem 0;
-  
-  @include respond(large){
-    padding: 2rem;
-  }
+  display:flex;
+  height:100%;
+  // padding: 2rem 0;
+  // height:85vh;
+  // @include respond(large){
+  //   padding: 2rem;
+  // }
 
-  @include respond(small2) {
-    padding: 0rem;
-    height: 82vh;
-  }
+  // @include respond(small2) {
+  //   padding: 0rem;
+  //   height: 85vh;
+  // }
 
-  @include respond(small3) {
-    height: 87vh;
-  }
+  // // @include respond(small3) {
+  // //   height: 87vh;
+  // // }
 
   &-wrapper {
     text-align: center;
+  
     border: 5px solid #fff;
     padding: 2rem;
+    margin:auto;
+    width:50%;
     background: rgba(0,0,0,.5);
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
-
-    @include respond(small2) {
+   
+    @include respond (medium2) {
+      width:75%;
+    }
+    @include respond(small) {
+      width:100vw;
+      height:85vh;
       padding: 2rem 1rem;
       border: none;
     }

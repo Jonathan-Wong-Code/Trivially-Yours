@@ -1,0 +1,7 @@
+.game-area{
+  height:85vh;
+
+  @media (max-height:800px) and (min-width:900px) {
+    height:88vh;
+  }
+}
